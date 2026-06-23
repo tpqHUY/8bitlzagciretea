@@ -1,0 +1,365 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Band 8 Reading Casebook — IELTS Academic Reading</title>
+  <meta name="description" content="A field guide to IELTS Academic Reading: strategy per question type, the traps that cost you band 8, and the paraphrase patterns examiners hide answers behind." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <strong>The Reading Casebook</strong>
+      <span>IELTS Academic · Reading</span>
+    </div>
+    <div class="band-chip">TARGET BAND 8.0</div>
+  </header>
+
+  <div class="shell">
+
+    <!-- ============ SIDE NAV ============ -->
+    <nav class="nav" aria-label="Sections">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false">
+        <span>Contents</span> <span aria-hidden="true">☰</span>
+      </button>
+      <div class="nav-inner" id="navInner">
+        <div class="nav-group">
+          <p class="nav-group-title">Foundations</p>
+          <a href="#mindset"><span class="idx">00</span> The Band 8 mindset</a>
+          <a href="#engine"><span class="idx">P1</span> The paraphrase engine</a>
+          <a href="#patterns"><span class="idx">P2</span> Hard sentence patterns</a>
+          <a href="#traps"><span class="idx">P3</span> The trap taxonomy</a>
+          <a href="#vocab"><span class="idx">P4</span> Synonym banks</a>
+          <a href="#confus"><span class="idx">P5</span> Easily confused</a>
+          <a href="#colloc"><span class="idx">P6</span> Collocations</a>
+        </div>
+        <div class="nav-group" id="navCases">
+          <p class="nav-group-title">Question types</p>
+          <!-- case links injected by JS -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ MAIN ============ -->
+    <main class="main">
+
+      <!-- ---------- HERO ---------- -->
+      <section class="hero">
+        <span class="eyebrow">A field guide to the evidence</span>
+        <h1>Read the <em>evidence</em>, never the words.</h1>
+        <p class="lede">
+          At band 8 the test is no longer about vocabulary — it is about proof. Every
+          answer is licensed by a specific span of text, dressed up in synonyms so the
+          surface no longer matches the question. This casebook trains the one move that
+          separates 6.5 from 8: locating that span, and reading what it actually claims.
+        </p>
+
+        <!-- signature: the annotated paraphrase demo -->
+        <figure class="demo swipe" id="demo">
+          <div class="demo-head">
+            <span class="mono">Exhibit A · True / False / Not Given</span>
+            <span class="mono">paraphrase &rarr; verdict</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-row">
+              <span class="demo-tag">The statement (question)</span>
+              <p class="demo-sentence">
+                The museum&rsquo;s <mark class="h">collection</mark> was
+                <mark class="h">assembled</mark> by a
+                <mark class="x">single benefactor</mark>.
+              </p>
+            </div>
+            <div class="demo-row">
+              <span class="demo-tag">The passage (text)</span>
+              <p class="demo-sentence">
+                Over four decades, the gallery&rsquo;s
+                <mark class="t">holdings</mark> were
+                <mark class="t">amassed</mark> through donations from
+                <mark class="x">numerous patrons</mark>.
+              </p>
+            </div>
+            <div class="demo-row">
+              <span class="verdict">
+                <span class="stamp">False</span>
+                the text directly contradicts the statement
+              </span>
+            </div>
+            <p class="demo-note">
+              <b>collection &rarr; holdings</b> and <b>assembled &rarr; amassed</b> are pure
+              synonym swaps — they confirm you are in the right place. The verdict turns on the
+              single contradicted detail: <b>single benefactor</b> vs <b>numerous patrons</b>.
+              That is <b>False</b>, not Not&nbsp;Given — the text makes a claim that clashes with
+              the statement. Train your eye to separate the matching scaffolding from the one
+              word the answer hangs on.
+            </p>
+          </div>
+        </figure>
+      </section>
+
+      <!-- ---------- 00 MINDSET ---------- -->
+      <section class="section" id="mindset">
+        <div class="section-head">
+          <span class="eyebrow">00 · Foundations</span>
+          <h2>The band 8 mindset</h2>
+          <p>Sixty minutes, three passages, forty answers, no extra transfer time. Band 8
+            is roughly 35/40 — you can miss five and still hit target, but you cannot afford
+            to drown in one hard passage. Pace and evidence discipline matter more than raw speed.</p>
+        </div>
+
+        <div class="timing">
+          <div class="cell"><div class="big">20<span style="font-size:1rem">min</span></div><div class="lab">per passage</div><p>Hard cap. If you hit 20 minutes, transfer your best answers and move on. A passage left unstarted is a guaranteed zero.</p></div>
+          <div class="cell"><div class="big">~90<span style="font-size:1rem">sec</span></div><div class="lab">per question</div><p>Average budget. Spend less on locating-type questions, bank the surplus for inference MCQs.</p></div>
+          <div class="cell"><div class="big">0<span style="font-size:1rem">min</span></div><div class="lab">transfer time</div><p>Unlike Listening, you write straight onto the answer sheet. Never leave it to the end.</p></div>
+          <div class="cell"><div class="big">35<span style="font-size:1rem">/40</span></div><div class="lab">band 8 target</div><p>Indicative. The third passage is usually hardest — protect time for it, don&rsquo;t starve it.</p></div>
+        </div>
+
+        <div class="principles">
+          <div class="principle"><span class="n">P-01</span><h4>The answer is in the text</h4><p>IELTS Reading never rewards outside knowledge or opinion. If you can&rsquo;t point to the exact line, you don&rsquo;t have the answer yet — you have a guess.</p></div>
+          <div class="principle"><span class="n">P-02</span><h4>Match meaning, not words</h4><p>Keyword-spotting is a 6.0 habit. The test author paraphrases the answer and plants the original keyword in a wrong option. Read for the proposition.</p></div>
+          <div class="principle"><span class="n">P-03</span><h4>Most answers run in order</h4><p>For most question sets the answers follow the passage top-to-bottom. Use the previous answer&rsquo;s location to bound your search for the next.</p></div>
+          <div class="principle"><span class="n">P-04</span><h4>Don&rsquo;t over-read</h4><p>You do not need to understand every word. You need to find the licensing sentence and read <em>that</em> precisely. Skim to locate, slow down to decide.</p></div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- P1 PARAPHRASE ENGINE ---------- -->
+      <section class="section" id="engine">
+        <div class="section-head">
+          <span class="eyebrow">P1 · The core skill</span>
+          <h2>The paraphrase engine</h2>
+          <p>Every question is the answer sentence run through a disguise machine. Learn the
+            transformations and you can run them backwards — from the question&rsquo;s wording to the
+            text&rsquo;s. These are the swaps examiners use again and again.</p>
+        </div>
+
+        <div class="map-list">
+          <div class="map-row">
+            <span class="q">a rise in <mark class="h">numbers</mark></span>
+            <span class="arrow">&rarr;</span>
+            <span class="p"><mark class="t">a growing population</mark></span>
+            <span class="tech">noun &rarr; noun phrase · synonym</span>
+          </div>
+          <div class="map-row">
+            <span class="q"><mark class="h">scientists discovered</mark></span>
+            <span class="arrow">&rarr;</span>
+            <span class="p"><mark class="t">it was revealed by researchers</mark></span>
+            <span class="tech">active &rarr; passive · agent moved</span>
+          </div>
+          <div class="map-row">
+            <span class="q">cheaper to produce</span>
+            <span class="arrow">&rarr;</span>
+            <span class="p">production costs fell</span>
+            <span class="tech">adjective &rarr; noun (nominalisation)</span>
+          </div>
+          <div class="map-row">
+            <span class="q">few people supported it</span>
+            <span class="arrow">&rarr;</span>
+            <span class="p">it met with little enthusiasm</span>
+            <span class="tech">negative quantifier · litotes</span>
+          </div>
+          <div class="map-row">
+            <span class="q">the plan failed</span>
+            <span class="arrow">&rarr;</span>
+            <span class="p">the scheme did not achieve its aims</span>
+            <span class="tech">verb &rarr; negated antonym</span>
+          </div>
+          <div class="map-row">
+            <span class="q">unlike birds, bats &hellip;</span>
+            <span class="arrow">&rarr;</span>
+            <span class="p">whereas birds &hellip;, bats by contrast &hellip;</span>
+            <span class="tech">contrast marker swap</span>
+          </div>
+        </div>
+
+        <div class="kbox">
+          <span class="k">Drill</span>
+          <p>When you meet a question, underline its 2&ndash;3 content words and immediately
+            ask: &ldquo;What are three other ways to say this?&rdquo; You are now scanning for
+            <em>meaning</em>, not letters. The matched words in the text will rarely be the ones in the question.</p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- P2 SENTENCE PATTERNS ---------- -->
+      <section class="section" id="patterns">
+        <div class="section-head">
+          <span class="eyebrow">P2 · Reading the fine print</span>
+          <h2>Hard sentence patterns</h2>
+          <p>These structures decide True vs False, the right MCQ option, and whether a claim
+            is the author&rsquo;s own. Misreading one of them is the most common way a strong
+            reader loses a mark. Slow down whenever you see them.</p>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern">
+            <h4><span class="num">01</span> Concession (<em>although / despite</em>)</h4>
+            <p class="ex">Although the drug reduced symptoms, it did not extend survival.</p>
+            <p class="why">The main clause carries the real point. <b>The drug did NOT extend survival</b> — the concession clause is a decoy that sounds positive.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">02</span> Double negative / litotes</h4>
+            <p class="ex">The findings were not insignificant.</p>
+            <p class="why">Two negatives = a positive. This means the findings <b>were significant</b>. IELTS loves <em>not uncommon</em>, <em>by no means certain</em>.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">03</span> Hedging &amp; modality</h4>
+            <p class="ex">The evidence suggests temperatures may have risen.</p>
+            <p class="why"><b>Suggests / may</b> = tentative, not fact. A statement saying &ldquo;temperatures rose&rdquo; as certain fact can be <em>Not Given</em> or even <em>False</em>.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">04</span> Attribution (<em>who said it</em>)</h4>
+            <p class="ex">Critics argued the theory was flawed; Hassan rejected this view.</p>
+            <p class="why">Track whose claim it is. The author may report a view <b>without endorsing it</b>. MCQs test exactly this confusion.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">05</span> Restrictive qualifiers</h4>
+            <p class="ex">Only in coastal regions did the species recover.</p>
+            <p class="why"><b>Only / except / unless / apart from</b> shrink the scope. A statement dropping the qualifier (&ldquo;the species recovered&rdquo;) over-generalises and is usually <em>False</em>.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">06</span> Comparatives &amp; superlatives</h4>
+            <p class="ex">No other method proved as reliable.</p>
+            <p class="why">= this method was <b>the most reliable</b>. Watch <em>more than</em>, <em>as &hellip; as</em>, <em>the least</em> — a flipped comparison is a classic False.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">07</span> Cause vs correlation</h4>
+            <p class="ex">Sales rose after the campaign, though the link is unclear.</p>
+            <p class="why">The text declines to claim cause. A statement saying the campaign <b>caused</b> the rise adds a link the text denies — <em>Not Given</em>/<em>False</em>.</p>
+          </div>
+          <div class="pattern">
+            <h4><span class="num">08</span> Conditionals</h4>
+            <p class="ex">Had funding continued, the project would have succeeded.</p>
+            <p class="why">A hypothetical, not a record of events. It tells you the project <b>did not</b> continue and did <b>not</b> succeed.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- P3 TRAP TAXONOMY ---------- -->
+      <section class="section" id="traps">
+        <div class="section-head">
+          <span class="eyebrow">P3 · Know the enemy</span>
+          <h2>The trap taxonomy</h2>
+          <p>Wrong options aren&rsquo;t random — they&rsquo;re engineered. Each belongs to a family.
+            Once you can name the trap in front of you, it stops working. These recur across
+            every question type.</p>
+        </div>
+
+        <div class="card">
+          <ul class="traps">
+            <li><span class="name">The keyword magnet.</span> An option reuses a striking word from the passage <b>verbatim</b> while distorting the meaning. The familiar word feels safe; that&rsquo;s the bait.
+              <span class="ex">Passage: &ldquo;the theory was eventually <u>abandoned</u>.&rdquo; Wrong option: &ldquo;the theory was abandoned at once.&rdquo;</span></li>
+            <li><span class="name">The extreme upgrade.</span> The text says <em>some / often / may</em>; the option says <em>all / always / proves</em>. Absolute language is right far less often than it appears.
+              <span class="ex">Text: &ldquo;many experts believe&rdquo; &rarr; trap: &ldquo;all experts agree&rdquo;.</span></li>
+            <li><span class="name">False vs Not Given.</span> <b>False</b> = the text says the opposite. <b>Not Given</b> = the text simply never addresses it. If you&rsquo;re inferring &ldquo;it&rsquo;s probably false&rdquo; from world knowledge, it&rsquo;s <em>Not Given</em>.</li>
+            <li><span class="name">The partial match.</span> Half the option is supported, half isn&rsquo;t. Both halves must be true. One unsupported clause sinks the whole option.</li>
+            <li><span class="name">The attribution swap.</span> The option assigns a view to the wrong person, or treats a reported opinion as the author&rsquo;s own fact.</li>
+            <li><span class="name">Out of scope / time shift.</span> The option is true in general or in a different period than the one the text discusses. Right fact, wrong frame.</li>
+            <li><span class="name">The plausible inference.</span> A sensible real-world conclusion the text never actually licenses. Reasonable &ne; stated. No line, no answer.</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- P4 SYNONYM BANKS ---------- -->
+      <section class="section" id="vocab">
+        <div class="section-head">
+          <span class="eyebrow">P4 · The raw material</span>
+          <h2>Synonym banks</h2>
+          <p>The paraphrase engine needs fuel. These are the high-frequency meanings
+            examiners disguise, grouped by <b>sense</b> — because in the exam you search by
+            what a word means, not its first letter. Type a word to find its family.</p>
+        </div>
+
+        <div class="vocab-tools">
+          <label class="vocab-search">
+            <span class="sr-only">Search synonyms</span>
+            <input type="search" id="vocabSearch" placeholder="Search a word or meaning — e.g. increase, cause, likely&hellip;" autocomplete="off" />
+          </label>
+          <div class="chips" id="vocabChips" role="group" aria-label="Filter by theme"></div>
+        </div>
+        <div class="vocab-count" id="vocabCount"></div>
+
+        <div class="vocab-grid" id="vocabGrid"><!-- injected by JS --></div>
+        <p class="vocab-empty" id="vocabEmpty" hidden>No match — try a broader word, or clear the theme filter.</p>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- P5 EASILY CONFUSED ---------- -->
+      <section class="section" id="confus">
+        <div class="section-head">
+          <span class="eyebrow">P5 · Precision traps</span>
+          <h2>Easily confused pairs</h2>
+          <p>At band 8 a single wrong gloss flips a True into a False. These look-alikes and
+            sound-alikes are precisely the words examiners lean on. Learn the one-line
+            discriminator for each.</p>
+        </div>
+
+        <div class="vocab-tools">
+          <label class="vocab-search">
+            <span class="sr-only">Search confused words</span>
+            <input type="search" id="confusSearch" placeholder="Search a word — e.g. affect, principle, discrete&hellip;" autocomplete="off" />
+          </label>
+          <span class="vocab-count" id="confusCount"></span>
+        </div>
+
+        <div class="confus-grid" id="confusGrid"><!-- injected by JS --></div>
+        <p class="vocab-empty" id="confusEmpty" hidden>No match — try the other half of the pair.</p>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- P6 COLLOCATIONS ---------- -->
+      <section class="section" id="colloc">
+        <div class="section-head">
+          <span class="eyebrow">P6 · The way it&rsquo;s phrased</span>
+          <h2>Academic collocations</h2>
+          <p>Academic passages are built from fixed partnerships, not free word choice.
+            Recognising the chunk — <em>pose a threat</em>, <em>draw a conclusion</em>,
+            <em>a body of evidence</em> — speeds up reading and flags where claims and
+            answers sit.</p>
+        </div>
+
+        <div class="vocab-grid" id="collocGrid"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- CASE FILES (injected by JS) ---------- -->
+      <section class="section" id="cases">
+        <div class="section-head">
+          <span class="eyebrow">The case files</span>
+          <h2>Question types, one by one</h2>
+          <p>Each type gets three views: the <b>strategy</b> (the steps, in order), the
+            <b>traps</b> built for it, and the <b>patterns</b> &mdash; the paraphrase and
+            phrasing it hides answers behind. Tabs switch the view.</p>
+        </div>
+        <div id="caseContainer"><!-- cases injected by main.js --></div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="foot">
+    <span>The Band 8 Reading Casebook — a study tool, not affiliated with IELTS / the British Council, IDP or Cambridge.</span>
+    <span>Built for evidence-based reading · v1.0</span>
+  </footer>
+
+  <script src="js/cases.js"></script>
+  <script src="js/vocab.js"></script>
+  <script src="js/extras.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/srs.js"></script>
+</body>
+</html>
