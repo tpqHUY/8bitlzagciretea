@@ -132,10 +132,8 @@ body::before {
 .brand-logo {
   height: 30px;
   width: 30px;
-  border-radius: 7px;
   display: block;
   flex: none;
-  box-shadow: 0 1px 4px rgba(22, 32, 29, 0.18);
 }
 .brand strong { align-self: center; }
 .brand strong { color: var(--accent); font-weight: 600; }
