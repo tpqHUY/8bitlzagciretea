@@ -18,8 +18,12 @@
   <header class="topbar">
     <div class="brand">
       <img class="brand-logo" src="assets/logo.png" alt="" width="30" height="30" />
-      <strong>The Reading Casebook</strong>
-      <span>IELTS Academic · Reading</span>
+      <strong>The Band 8 Casebook</strong>
+      <span>IELTS Academic</span>
+    </div>
+    <div class="mode-switch" role="tablist" aria-label="Skill">
+      <button class="mode-btn" role="tab" data-mode="reading" aria-selected="true">Reading</button>
+      <button class="mode-btn" role="tab" data-mode="writing" aria-selected="false">Writing</button>
     </div>
     <div class="band-chip">TARGET BAND 8.0</div>
   </header>
@@ -32,25 +36,53 @@
         <span>Contents</span> <span aria-hidden="true">☰</span>
       </button>
       <div class="nav-inner" id="navInner">
-        <div class="nav-group">
-          <p class="nav-group-title">Foundations</p>
-          <a href="#mindset"><span class="idx">00</span> The Band 8 mindset</a>
-          <a href="#engine"><span class="idx">P1</span> The paraphrase engine</a>
-          <a href="#patterns"><span class="idx">P2</span> Hard sentence patterns</a>
-          <a href="#traps"><span class="idx">P3</span> The trap taxonomy</a>
-          <a href="#vocab"><span class="idx">P4</span> Synonym banks</a>
-          <a href="#confus"><span class="idx">P5</span> Easily confused</a>
-          <a href="#colloc"><span class="idx">P6</span> Collocations</a>
+
+        <div class="nav-mode" data-mode="reading">
+          <div class="nav-group">
+            <p class="nav-group-title">Foundations</p>
+            <a href="#mindset"><span class="idx">00</span> The Band 8 mindset</a>
+            <a href="#engine"><span class="idx">P1</span> The paraphrase engine</a>
+            <a href="#patterns"><span class="idx">P2</span> Hard sentence patterns</a>
+            <a href="#traps"><span class="idx">P3</span> The trap taxonomy</a>
+            <a href="#vocab"><span class="idx">P4</span> Synonym banks</a>
+            <a href="#confus"><span class="idx">P5</span> Easily confused</a>
+            <a href="#colloc"><span class="idx">P6</span> Collocations</a>
+          </div>
+          <div class="nav-group" id="navCases">
+            <p class="nav-group-title">Question types</p>
+            <!-- case links injected by JS -->
+          </div>
         </div>
-        <div class="nav-group" id="navCases">
-          <p class="nav-group-title">Question types</p>
-          <!-- case links injected by JS -->
+
+        <div class="nav-mode" data-mode="writing">
+          <div class="nav-group">
+            <p class="nav-group-title">Foundations</p>
+            <a href="#w-intro"><span class="idx">00</span> How Writing is scored</a>
+            <a href="#w-criteria"><span class="idx">W1</span> The four criteria</a>
+            <a href="#w-technique"><span class="idx">W2</span> High-score techniques</a>
+            <a href="#w-mistakes"><span class="idx">W3</span> Common mistakes</a>
+            <a href="#w-lang"><span class="idx">W4</span> Language bank</a>
+          </div>
+          <div class="nav-group" id="navWT1">
+            <p class="nav-group-title">Task 1 · report</p>
+            <!-- task 1 case links injected by JS -->
+          </div>
+          <div class="nav-group" id="navWT2">
+            <p class="nav-group-title">Task 2 · essay</p>
+            <!-- task 2 case links injected by JS -->
+          </div>
         </div>
+
       </div>
     </nav>
 
     <!-- ============ MAIN ============ -->
     <main class="main">
+
+     <!-- ========================================================= -->
+     <!-- ====================  READING VIEW  ===================== -->
+     <!-- ========================================================= -->
+     <div class="view" data-view="reading">
 
       <!-- ---------- HERO ---------- -->
       <section class="hero">
@@ -351,17 +383,152 @@
         <div id="caseContainer"><!-- cases injected by main.js --></div>
       </section>
 
+     </div><!-- /view reading -->
+
+     <!-- ========================================================= -->
+     <!-- ====================  WRITING VIEW  ===================== -->
+     <!-- ========================================================= -->
+     <div class="view" data-view="writing" hidden>
+
+      <!-- ---------- HERO ---------- -->
+      <section class="hero">
+        <span class="eyebrow">A blueprint for the page</span>
+        <h1>Write to the <em>criteria</em>, not to a template.</h1>
+        <p class="lede">
+          Band 8 writing is not bigger words — it is a clear position answered in full, ideas
+          that actually develop, and sentences that vary on purpose. This half of the casebook
+          turns each task into a repeatable plan: what the examiner rewards, how to structure
+          every paragraph, and the language to say it precisely.</p>
+
+        <div class="timing">
+          <div class="cell"><div class="big">20<span style="font-size:1rem">min</span></div><div class="lab">Task 1 · 150+ words</div><p>A factual report of visual data. Worth one third of the mark — finish it, then give Task 2 the rest.</p></div>
+          <div class="cell"><div class="big">40<span style="font-size:1rem">min</span></div><div class="lab">Task 2 · 250+ words</div><p>An essay answering a prompt. Worth two thirds — protect this time and plan before you write.</p></div>
+          <div class="cell"><div class="big">⅓ : ⅔</div><div class="lab">mark weighting</div><p>Task 2 counts double. If time runs short, never sacrifice the essay for the report.</p></div>
+          <div class="cell"><div class="big">5<span style="font-size:1rem">min</span></div><div class="lab">plan + check</div><p>Spend ~5 min planning Task 2 and ~2 min checking each task. Unplanned essays drift off-topic.</p></div>
+        </div>
+      </section>
+
+      <!-- ---------- W0 HOW IT IS SCORED ---------- -->
+      <section class="section" id="w-intro">
+        <div class="section-head">
+          <span class="eyebrow">00 · The rules of the game</span>
+          <h2>How Writing is scored</h2>
+          <p>Each task is marked on <b>four equally-weighted criteria</b>. Your task band is
+            their average; the two tasks are then combined (Task 2 double-weighted) for the
+            Writing band. You can&rsquo;t hide a weak criterion — band 8 means hitting all four.</p>
+        </div>
+        <div class="principles">
+          <div class="principle"><span class="n">W-01</span><h4>Answer the whole task</h4><p>Cover every part of the prompt, take a clear position, and stay on topic. Task 1 needs a data overview; Task 2 needs a developed answer to the exact question.</p></div>
+          <div class="principle"><span class="n">W-02</span><h4>Structure is visible</h4><p>Clear paragraphs, one idea each, joined naturally. The examiner should see your plan without effort — and not feel the joins are mechanical.</p></div>
+          <div class="principle"><span class="n">W-03</span><h4>Precision over rarity</h4><p>A precise, correctly-collocated common word beats a misused rare one. Flexibility and accuracy score; thesaurus-dumping does not.</p></div>
+          <div class="principle"><span class="n">W-04</span><h4>Vary sentences on purpose</h4><p>A mix of simple and complex structures, mostly error-free. Range with control — not long tangled sentences for show.</p></div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- W1 THE FOUR CRITERIA ---------- -->
+      <section class="section" id="w-criteria">
+        <div class="section-head">
+          <span class="eyebrow">W1 · What earns the marks</span>
+          <h2>The four criteria</h2>
+          <p>What separates band 6 from band 8 on each. Read these as a checklist you can run
+            over your own writing.</p>
+        </div>
+        <div class="crit-grid" id="wCriteria"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- W2 TECHNIQUES ---------- -->
+      <section class="section" id="w-technique">
+        <div class="section-head">
+          <span class="eyebrow">W2 · The moves that lift a band</span>
+          <h2>High-score techniques</h2>
+          <p>Concrete, repeatable moves — each tied to the criterion it raises. Use them
+            deliberately, not everywhere at once.</p>
+        </div>
+        <div class="pattern-grid" id="wTechniques"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- TASK 1 CASES ---------- -->
+      <section class="section" id="w-task1">
+        <div class="section-head">
+          <span class="eyebrow">Task 1 · the report</span>
+          <h2>Task 1: describe the data</h2>
+          <p>Each visual type gets three views: the <b>approach</b> (how to read and plan it),
+            the <b>structure</b> (the paragraph blueprint), and the <b>pitfalls</b> built for
+            it. Tabs switch the view.</p>
+        </div>
+        <div id="wT1Container"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- TASK 2 CASES ---------- -->
+      <section class="section" id="w-task2">
+        <div class="section-head">
+          <span class="eyebrow">Task 2 · the essay</span>
+          <h2>Task 2: answer the question</h2>
+          <p>Identify the essay type first — it dictates your thesis and paragraph plan. Each
+            type below has its <b>approach</b>, a <b>structure</b> blueprint, and its
+            <b>pitfalls</b>.</p>
+        </div>
+        <div id="wT2Container"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- W3 COMMON MISTAKES ---------- -->
+      <section class="section" id="w-mistakes">
+        <div class="section-head">
+          <span class="eyebrow">W3 · Know the enemy</span>
+          <h2>Common mistakes</h2>
+          <p>The recurring errors that cap a score below band 8 — across both tasks. Each one
+            is avoidable once you can name it.</p>
+        </div>
+        <div class="card"><ul class="traps" id="wMistakes"><!-- injected by JS --></ul></div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ---------- W4 LANGUAGE BANK ---------- -->
+      <section class="section" id="w-lang">
+        <div class="section-head">
+          <span class="eyebrow">W4 · The raw material</span>
+          <h2>Language bank</h2>
+          <p>Reusable phrases and structures grouped by <b>what they do</b> — describe a trend,
+            compare, give an opinion, concede, conclude. Tap a card to drill it as a flashcard;
+            spaced repetition is on, same as the reading banks.</p>
+        </div>
+        <div class="vocab-tools">
+          <label class="vocab-search">
+            <span class="sr-only">Search phrases</span>
+            <input type="search" id="wLangSearch" placeholder="Search a function or phrase — e.g. trend, contrast, opinion&hellip;" autocomplete="off" />
+          </label>
+          <div class="chips" id="wLangChips" role="group" aria-label="Filter by function"></div>
+        </div>
+        <div class="vocab-count" id="wLangCount"></div>
+        <div class="vocab-grid" id="wLangGrid"><!-- injected by JS --></div>
+        <p class="vocab-empty" id="wLangEmpty" hidden>No match — try a broader term, or clear the filter.</p>
+      </section>
+
+     </div><!-- /view writing -->
+
     </main>
   </div>
 
   <footer class="foot">
-    <span>The Band 8 Reading Casebook — a study tool, not affiliated with IELTS / the British Council, IDP or Cambridge.</span>
-    <span>Built for evidence-based reading · v1.0</span>
+    <span>The Band 8 Casebook — a study tool, not affiliated with IELTS / the British Council, IDP or Cambridge.</span>
+    <span>Reading + Writing · evidence and the page · v2.0</span>
   </footer>
 
   <script src="js/cases.js"></script>
   <script src="js/vocab.js"></script>
   <script src="js/extras.js"></script>
+  <script src="js/writing.js"></script>
   <script src="js/main.js"></script>
   <script src="js/srs.js"></script>
 </body>

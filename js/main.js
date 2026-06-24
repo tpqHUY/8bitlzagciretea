@@ -235,6 +235,160 @@
     }).join("");
   })();
 
+  /* ==========================================================
+     WRITING mode: criteria, techniques, mistakes, cases, langbank
+     ========================================================== */
+  function tagLabel(t) { return t === "t1" ? "Task 1" : t === "t2" ? "Task 2" : t; }
+
+  function blueprintHTML(bp) {
+    return '<ol class="blueprint">' + bp.map(function (b) {
+      return '<li><span class="bp-part">' + b.part + '</span><span class="bp-detail">' + b.detail + "</span></li>";
+    }).join("") + "</ol>";
+  }
+
+  function writingCaseHTML(c) {
+    const base = "wt-" + c.id;
+    return (
+      '<article class="case" id="wcase-' + c.id + '">' +
+        '<div class="case-head">' +
+          '<div class="case-no">' + c.no + "</div>" +
+          '<div class="case-title"><h3>' + c.title + "</h3><div class=\"alias\">" + c.alias + "</div></div>" +
+          '<div class="case-meta"><span class="order seq">' + c.meta + "</span></div>" +
+        "</div>" +
+        '<p style="padding:1.1rem clamp(1.1rem,3vw,1.8rem) 0;margin:0;color:var(--text-soft);max-width:70ch">' + c.blurb + "</p>" +
+        '<div class="tabs" role="tablist" aria-label="' + c.title + ' views">' +
+          '<button class="tab" role="tab" aria-selected="true" id="' + base + '-a" aria-controls="' + base + '-ap" data-target="' + base + '-ap">Approach</button>' +
+          '<button class="tab" role="tab" aria-selected="false" id="' + base + '-s" aria-controls="' + base + '-sp" data-target="' + base + '-sp">Structure</button>' +
+          '<button class="tab" role="tab" aria-selected="false" id="' + base + '-p" aria-controls="' + base + '-pp" data-target="' + base + '-pp">Pitfalls <span class="dot">&bull;</span></button>' +
+        "</div>" +
+        '<div class="panel" role="tabpanel" id="' + base + '-ap" aria-labelledby="' + base + '-a">' + stepsHTML(c.steps) + "</div>" +
+        '<div class="panel" role="tabpanel" id="' + base + '-sp" aria-labelledby="' + base + '-s" hidden>' + blueprintHTML(c.blueprint) + "</div>" +
+        '<div class="panel" role="tabpanel" id="' + base + '-pp" aria-labelledby="' + base + '-p" hidden>' + trapsHTML(c.pitfalls) + "</div>" +
+      "</article>"
+    );
+  }
+
+  if (window.WRITING) {
+    const W = window.WRITING;
+
+    const critEl = $("#wCriteria");
+    if (critEl) critEl.innerHTML = W.criteria.map(function (c) {
+      return (
+        '<div class="crit">' +
+          '<div class="crit-head"><div class="code"><span>' + c.code + '</span><span class="pct">' + c.pct + "</span></div>" +
+            "<h4>" + c.name + "</h4><p>" + c.intro + "</p></div>" +
+          '<div class="crit-body">' +
+            '<div class="crit-row b6"><span class="lbl">Band 6</span><p>' + c.b6 + "</p></div>" +
+            '<div class="crit-row b8"><span class="lbl">Band 8</span><p>' + c.b8 + "</p></div>" +
+          "</div>" +
+        "</div>"
+      );
+    }).join("");
+
+    const techEl = $("#wTechniques");
+    if (techEl) techEl.innerHTML = W.techniques.map(function (t) {
+      return (
+        '<div class="pattern">' +
+          '<h4><span class="num">' + t.crit + "</span> " + t.name + "</h4>" +
+          '<p class="ex">' + t.ex + "</p>" +
+          '<p class="why">' + t.why + "</p>" +
+        "</div>"
+      );
+    }).join("");
+
+    const misEl = $("#wMistakes");
+    if (misEl) misEl.innerHTML = W.mistakes.map(function (t) {
+      return "<li><span class=\"name\">" + t.n + "</span> " + t.d +
+        (t.ex ? '<span class="ex">' + t.ex + "</span>" : "") + "</li>";
+    }).join("");
+
+    const t1El = $("#wT1Container");
+    if (t1El) t1El.innerHTML = W.t1.map(writingCaseHTML).join("");
+    const t2El = $("#wT2Container");
+    if (t2El) t2El.innerHTML = W.t2.map(writingCaseHTML).join("");
+
+    // writing nav links
+    const nT1 = $("#navWT1"), nT2 = $("#navWT2");
+    if (nT1) nT1.insertAdjacentHTML("beforeend", W.t1.map(function (c, i) {
+      return '<a href="#wcase-' + c.id + '"><span class="idx">' + (i + 1) + "</span> " + c.title + "</a>";
+    }).join(""));
+    if (nT2) nT2.insertAdjacentHTML("beforeend", W.t2.map(function (c, i) {
+      return '<a href="#wcase-' + c.id + '"><span class="idx">' + (i + 1) + "</span> " + c.title + "</a>";
+    }).join(""));
+  }
+
+  /* ---------- writing language bank: render + search + filter ---------- */
+  (function wlang() {
+    const grid = $("#wLangGrid");
+    if (!grid || !window.WLANG) return;
+    const search = $("#wLangSearch"), chipsWrap = $("#wLangChips"), countEl = $("#wLangCount"), emptyEl = $("#wLangEmpty");
+
+    grid.innerHTML = WLANG.map(function (v, i) {
+      return (
+        '<div class="vcard srs-card" data-tag="' + v.tag + '" data-i="' + i + '" data-srs-id="w:' + i + '" tabindex="0" role="button">' +
+          '<div class="vhead"><h4>' + v.g + '</h4><span class="vtag">' + tagLabel(v.tag) + "</span></div>" +
+          '<p class="vsense">' + v.sense + "</p>" +
+          '<div class="vwords">' + v.items.map(chip).join("") + "</div>" +
+        "</div>"
+      );
+    }).join("");
+
+    const tags = [];
+    WLANG.forEach(function (v) { if (tags.indexOf(v.tag) === -1) tags.push(v.tag); });
+    let active = "all";
+    chipsWrap.innerHTML =
+      '<button class="chip" data-tag="all" aria-pressed="true">All</button>' +
+      tags.map(function (t) { return '<button class="chip" data-tag="' + t + '" aria-pressed="false">' + tagLabel(t) + "</button>"; }).join("");
+
+    const cards = $$(".vcard", grid);
+    function apply() {
+      const q = (search.value || "").trim().toLowerCase();
+      let shown = 0;
+      cards.forEach(function (card) {
+        const v = WLANG[+card.getAttribute("data-i")];
+        const tagOk = active === "all" || v.tag === active;
+        const hay = (v.g + " " + v.sense + " " + v.tag + " " +
+          v.items.map(function (w) { return wText(w) + " " + wDef(w) + " " + wEx(w); }).join(" ")).toLowerCase();
+        const show = tagOk && (!q || hay.indexOf(q) !== -1);
+        card.hidden = !show;
+        if (show) shown++;
+        $$(".vwords span", card).forEach(function (sp) {
+          sp.classList.toggle("hit", !!(q && sp.textContent.toLowerCase().indexOf(q) !== -1));
+        });
+      });
+      countEl.textContent = shown + " of " + WLANG.length + " groups";
+      emptyEl.hidden = shown !== 0;
+    }
+    search.addEventListener("input", apply);
+    chipsWrap.addEventListener("click", function (e) {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      active = chip.getAttribute("data-tag");
+      $$(".chip", chipsWrap).forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+      apply();
+    });
+    apply();
+  })();
+
+  /* ---------- Reading / Writing mode switch ---------- */
+  (function modeSwitch() {
+    const btns = $$(".mode-btn");
+    if (!btns.length) return;
+    $$(".view").forEach(function (v) { v.removeAttribute("hidden"); });
+    const KEY = "band8-mode";
+    function set(mode) {
+      document.body.setAttribute("data-mode", mode);
+      btns.forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-mode") === mode)); });
+      try { localStorage.setItem(KEY, mode); } catch (e) {}
+    }
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () { set(b.getAttribute("data-mode")); window.scrollTo(0, 0); });
+    });
+    let init = "reading";
+    try { init = localStorage.getItem(KEY) || "reading"; } catch (e) {}
+    set(init);
+  })();
+
   /* ---------- build case nav links ---------- */
   const navCases = $("#navCases");
   if (navCases && window.CASES) {

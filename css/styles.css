@@ -149,6 +149,113 @@ body::before {
   white-space: nowrap;
 }
 
+/* ---------- Reading / Writing mode switch ---------- */
+.mode-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--surface-2);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+}
+.mode-btn {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.42rem 0.95rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.mode-btn[aria-selected="true"] { background: var(--accent); color: #fff; }
+.mode-btn:hover:not([aria-selected="true"]) { color: var(--text); }
+@media (max-width: 760px) { .topbar .band-chip { display: none; } }
+@media (max-width: 560px) { .brand span { display: none; } .mode-btn { padding: 0.42rem 0.7rem; } }
+
+/* view + nav swapping by mode (default = reading) */
+.view[data-view="writing"] { display: none; }
+body[data-mode="writing"] .view[data-view="writing"] { display: block; }
+body[data-mode="writing"] .view[data-view="reading"] { display: none; }
+.nav-mode[data-mode="writing"] { display: none; }
+body[data-mode="writing"] .nav-mode[data-mode="writing"] { display: block; }
+body[data-mode="writing"] .nav-mode[data-mode="reading"] { display: none; }
+
+/* ---------- Writing: criteria cards ---------- */
+.crit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 1rem;
+}
+.crit {
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.crit-head {
+  padding: 1.1rem 1.3rem 0.9rem;
+  border-bottom: 1px solid var(--hair);
+}
+.crit-head .code {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+}
+.crit-head .code .pct { color: var(--text-faint); }
+.crit-head h4 { font-family: var(--serif); font-weight: 500; font-size: 1.22rem; margin-top: 0.35rem; }
+.crit-head p { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--text-soft); }
+.crit-body { padding: 0.7rem 1.3rem 1.1rem; }
+.crit-row { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0.7rem; padding: 0.6rem 0; }
+.crit-row + .crit-row { border-top: 1px dashed var(--hair-strong); }
+.crit-row .lbl {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-top: 0.15em;
+  font-weight: 600;
+}
+.crit-row.b6 .lbl { color: var(--trap); }
+.crit-row.b8 .lbl { color: #3E8E5A; }
+.crit-row p { margin: 0; font-size: 0.92rem; color: var(--text-soft); }
+.crit-row.b8 p { color: var(--text); }
+
+/* ---------- Writing: paragraph blueprint (Structure tab) ---------- */
+.blueprint { list-style: none; margin: 0; padding: 0; }
+.blueprint li {
+  position: relative;
+  padding-left: 8.5rem;
+  margin-bottom: 1rem;
+}
+.blueprint li:last-child { margin-bottom: 0; }
+.blueprint .bp-part {
+  position: absolute;
+  left: 0; top: 0.05em;
+  width: 7.6rem;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.3;
+}
+.blueprint .bp-detail { font-size: 0.96rem; color: var(--text-soft); line-height: 1.55; }
+.blueprint .bp-detail b { color: var(--text); font-weight: 600; }
+@media (max-width: 560px) {
+  .blueprint li { padding-left: 0; }
+  .blueprint .bp-part { position: static; width: auto; display: block; margin-bottom: 0.2rem; }
+}
+
 /* ============================================================
    Layout shell
    ============================================================ */
