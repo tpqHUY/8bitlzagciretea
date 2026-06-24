@@ -185,6 +185,21 @@ body[data-mode="writing"] .view[data-view="reading"] { display: none; }
 body[data-mode="writing"] .nav-mode[data-mode="writing"] { display: block; }
 body[data-mode="writing"] .nav-mode[data-mode="reading"] { display: none; }
 
+/* Writing wears a different accent: deep indigo (ink) instead of teal.
+   Everything derives from --accent, so re-pointing it recolours the whole
+   Writing view + chrome. Semantic colours (trap red, band-8 green) stay. */
+body[data-mode="writing"] {
+  --accent: #3d3f92;
+  --accent-deep: #2b2c68;
+  --accent-soft: #e4e4f3;
+  --high-mark-2: rgba(61, 63, 146, 0.16);
+}
+body[data-mode="writing"] .kbox { border-color: #c8c9ea; }
+body[data-mode="writing"] .srs-cam { border-color: #c8c9ea; }
+body[data-mode="writing"] .kbox.warn { border-color: #e6bcb1; }
+/* brand stays teal (constant identity) to match the logo, even in Writing */
+body[data-mode="writing"] .brand strong { color: #0f5c57; }
+
 /* ---------- Writing: criteria cards ---------- */
 .crit-grid {
   display: grid;
