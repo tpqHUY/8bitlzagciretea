@@ -55,6 +55,15 @@
     for (const k in b) { if (!out[k] || (b[k].ts || 0) > (out[k].ts || 0)) out[k] = b[k]; }
     return out;
   }
+  // Fisher-Yates shuffle (returns a new array)
+  function shuffled(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
 
   /* ---------- registry (id -> flashcard descriptor) ---------- */
   function wStep(it) {
@@ -331,11 +340,15 @@
   function open(id, queue, qpos) {
     const r = reg[id];
     if (!r || !r.steps.length) return;
-    const steps = r.steps.slice();
+    // Reading cards (not writing "w:") shuffle their word order once learned,
+    // so each review session presents the words in a fresh random order.
+    const isReading = id.indexOf("w:") !== 0;
+    const reshuffle = isReading && store[id] && store[id].level >= 1 && r.steps.length > 1;
+    const steps = reshuffle ? shuffled(r.steps) : r.steps.slice();
     if (r.note) steps.push({ isNote: true, primary: r.note });
     current = { id: id, steps: steps, index: 0, completed: false, queue: queue || null, qpos: qpos || 0 };
     ov.querySelector(".srs-ptitle").textContent = r.title;
-    ov.querySelector(".srs-psense").textContent = r.sense || "";
+    ov.querySelector(".srs-psense").textContent = (r.sense || "") + (reshuffle ? " · shuffled" : "");
     const q = ov.querySelector(".srs-queue");
     if (current.queue) {
       q.style.display = "";
