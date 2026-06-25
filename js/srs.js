@@ -405,11 +405,18 @@
     if (!r || !r.steps.length) return;
     queue = queue || null; qpos = qpos || 0;
     if (lockLeft(id)) { openLocked(id); return; }
-    // 2nd review onward of a reading card -> quiz; otherwise flashcard
+    const v = view(id);
     const isReading = id.indexOf("w:") !== 0;
     const reviewed = store[id] && store[id].level >= 1;
-    if (isReading && reviewed) startQuiz(id, r, queue, qpos);
-    else startCard(id, r, queue, qpos);
+    // A session only counts toward spaced repetition when the card is NEW or
+    // genuinely DUE. Opening a still-resting card is review-only (no progress).
+    if (isReading && reviewed && v.status === "due") {
+      startQuiz(id, r, queue, qpos);   // graded review — only when due
+      return;
+    }
+    const counts = (v.status === "new" || v.status === "due");
+    const note = counts ? "" : "review only · counts in " + fmtLeft(v.remaining).replace(" left", "");
+    startCard(id, r, queue, qpos, counts, note);
   }
 
   function startDueReview(prefix) {
@@ -432,12 +439,13 @@
   }
 
   /* ---------- flashcard mode ---------- */
-  function startCard(id, r, queue, qpos) {
+  function startCard(id, r, queue, qpos, counts, note) {
     const steps = r.steps.slice();
     if (r.note) steps.push({ isNote: true, primary: r.note });
-    current = { id: id, steps: steps, index: 0, completed: false, queue: queue, qpos: qpos };
+    current = { id: id, steps: steps, index: 0, completed: false, queue: queue, qpos: qpos, counts: counts !== false };
     ov.querySelector(".srs-ptitle").textContent = r.title;
-    ov.querySelector(".srs-psense").textContent = r.sense || "";
+    ov.querySelector(".srs-psense").textContent = (r.sense || "") + (note ? " · " + note : "");
+    ov.querySelector(".srs-view-card").classList.toggle("review-only", counts === false);
     const q = ov.querySelector(".srs-queue");
     if (queue) { q.style.display = ""; q.textContent = "Due queue · " + (qpos + 1) + " / " + queue.length; }
     else q.style.display = "none";
@@ -472,8 +480,13 @@
     ov.querySelector('[data-act="prev"]').disabled = i === 0;
     const next = ov.querySelector('[data-act="next"]');
     const hint = ov.querySelector(".srs-hint");
-    if (current.completed) { next.textContent = "Done ✓"; hint.textContent = "Click anywhere to finish · ↵ hear"; }
-    else { next.textContent = "Next ›"; hint.textContent = "→ / space · ↵ hear"; }
+    if (current.completed) {
+      next.textContent = current.counts ? "Done ✓" : "Close";
+      hint.textContent = current.counts ? "Click anywhere to finish · ↵ hear" : "Review only — progress not counted";
+    } else {
+      next.textContent = "Next ›";
+      hint.textContent = (current.counts ? "" : "review only · ") + "→ / space · ↵ hear";
+    }
   }
 
   function step(d) {
@@ -488,7 +501,7 @@
   function finish() {
     if (!current) return;
     const q = current.queue, pos = current.qpos;
-    markLearned(current.id);
+    if (current.counts) markLearned(current.id);   // resting (review-only) cards don't advance
     continueQueue(q, pos);
   }
 
