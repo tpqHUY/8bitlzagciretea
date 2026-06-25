@@ -522,16 +522,17 @@
     return set;
   }
   function primaryForm(term) { return term.split("/")[0].replace(/\([^)]*\)/g, "").trim(); }
-  // reveal the first n characters of the primary form, mask the rest
+  // reveal the first n letters of the primary form; mask the rest as "_",
+  // one cell per character so the length is always visible
   function maskPrefix(term, n) {
     const p = primaryForm(term);
-    let out = "";
+    const cells = [];
     for (let i = 0; i < p.length; i++) {
       const ch = p[i];
-      if (i < n) out += ch;
-      else out += (ch === " ") ? " " : "·";
+      if (ch === " ") cells.push(" ");      // word gap
+      else cells.push(i < n ? ch : "_");
     }
-    return out + "  (" + p.length + ")";
+    return cells.join(" ");
   }
   function clearHintTimer() { if (quiz && quiz.hintTimer) { clearTimeout(quiz.hintTimer); quiz.hintTimer = null; } }
 
@@ -554,20 +555,22 @@
     ov.querySelector(".srs-qmeaning").textContent = it.def || it.secondary || "(meaning unavailable)";
     const input = ov.querySelector(".srs-qinput");
     input.value = ""; input.disabled = false;
-    const hint = ov.querySelector(".srs-qhint"); hint.hidden = true; hint.innerHTML = "";
+    const hint = ov.querySelector(".srs-qhint");
     const fb = ov.querySelector(".srs-qfeedback"); fb.hidden = true; fb.innerHTML = ""; fb.className = "srs-qfeedback";
     ov.querySelector('[data-q="submit"]').textContent = "Check ›";
-    const timer = ov.querySelector(".srs-qtimer"); timer.textContent = "hint in 15s";
+    const timer = ov.querySelector(".srs-qtimer");
     setTimeout(function () { try { input.focus(); } catch (e) {} }, 40);
-    // progressive hint: every 15s reveal 2 more letters, until the whole word shows
+    // blanks for the word length shown right away; reveal 2 more letters every 15s
     const len = primaryForm(it.term).length;
     quiz.hintN = 0;
+    hint.hidden = false;
+    hint.innerHTML = "<b>" + maskPrefix(it.term, 0) + "</b>";
+    timer.textContent = "+2 letters in 15s";
     function revealStep() {
       quiz.hintN += 2;
-      hint.hidden = false;
-      hint.innerHTML = "hint &nbsp; <b>" + maskPrefix(it.term, quiz.hintN) + "</b>";
-      if (quiz.hintN < len) { timer.textContent = "+2 letters in 15s"; quiz.hintTimer = setTimeout(revealStep, HINT_MS); }
-      else { timer.textContent = ""; }
+      hint.innerHTML = "<b>" + maskPrefix(it.term, quiz.hintN) + "</b>";
+      if (quiz.hintN < len) quiz.hintTimer = setTimeout(revealStep, HINT_MS);
+      else timer.textContent = "";
     }
     quiz.hintTimer = setTimeout(revealStep, HINT_MS);
   }
