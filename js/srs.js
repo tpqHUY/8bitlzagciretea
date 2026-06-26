@@ -312,7 +312,8 @@
 
   /* ---------- focus overlay: flashcard / quiz / message ---------- */
   const LOCK_MS = 30 * 60000;   // 30-minute lock after a failed quiz
-  const HINT_MS = 15000;        // reveal a hint after 15s with no answer
+  const HINT_FIRST_MS = 5000;   // first 2 letters after 5s
+  const HINT_STEP_MS = 10000;   // then 2 more letters every 10s
   const PASS_RATE = 0.8;        // 80% to pass the quiz
 
   // failed-quiz locks are device-local (not synced)
@@ -368,7 +369,11 @@
             '<div class="srs-qfeedback" hidden></div>' +
           "</div>" +
           '<div class="srs-foot">' +
-            '<div class="srs-qtimer"></div>' +
+            '<div class="srs-ring" hidden aria-hidden="true">' +
+              '<svg viewBox="0 0 36 36"><circle class="srs-ring-bg" cx="18" cy="18" r="15.9"></circle>' +
+              '<circle class="srs-ring-fg" cx="18" cy="18" r="15.9"></circle></svg>' +
+              '<span class="srs-ring-num"></span>' +
+            "</div>" +
             '<button class="srs-btn primary" data-q="submit">Check ›</button>' +
           "</div>" +
         "</div>" +
@@ -534,7 +539,39 @@
     }
     return cells.join(" ");
   }
-  function clearHintTimer() { if (quiz && quiz.hintTimer) { clearTimeout(quiz.hintTimer); quiz.hintTimer = null; } }
+  function clearHintTimer() {
+    if (quiz) {
+      if (quiz.hintTimer) { clearTimeout(quiz.hintTimer); quiz.hintTimer = null; }
+      if (quiz.ringInt) { clearInterval(quiz.ringInt); quiz.ringInt = null; }
+    }
+    const ring = ov && ov.querySelector(".srs-ring");
+    if (ring) ring.hidden = true;
+  }
+
+  // animated circular countdown to the next hint reveal
+  function startRing(durationMs) {
+    const ring = ov.querySelector(".srs-ring");
+    const fg = ov.querySelector(".srs-ring-fg");
+    const num = ov.querySelector(".srs-ring-num");
+    ring.hidden = false;
+    fg.style.transition = "none";
+    fg.style.strokeDashoffset = "0";
+    void fg.getBoundingClientRect();              // force reflow so the reset applies
+    fg.style.transition = "stroke-dashoffset " + (durationMs / 1000) + "s linear";
+    fg.style.strokeDashoffset = "100";            // deplete the ring over the duration
+    let remain = Math.round(durationMs / 1000);
+    num.textContent = remain;
+    if (quiz.ringInt) clearInterval(quiz.ringInt);
+    quiz.ringInt = setInterval(function () {
+      remain--; num.textContent = remain > 0 ? remain : "";
+      if (remain <= 0) { clearInterval(quiz.ringInt); quiz.ringInt = null; }
+    }, 1000);
+  }
+  function stopRing() {
+    if (quiz && quiz.ringInt) { clearInterval(quiz.ringInt); quiz.ringInt = null; }
+    const ring = ov.querySelector(".srs-ring");
+    if (ring) ring.hidden = true;
+  }
 
   function startQuiz(id, r, queue, qpos) {
     const items = r.steps.filter(function (s) { return s.term; });
@@ -558,21 +595,23 @@
     const hint = ov.querySelector(".srs-qhint");
     const fb = ov.querySelector(".srs-qfeedback"); fb.hidden = true; fb.innerHTML = ""; fb.className = "srs-qfeedback";
     ov.querySelector('[data-q="submit"]').textContent = "Check ›";
-    const timer = ov.querySelector(".srs-qtimer");
     setTimeout(function () { try { input.focus(); } catch (e) {} }, 40);
-    // blanks for the word length shown right away; reveal 2 more letters every 15s
+    // blanks for the word length shown right away; first 2 letters after 5s,
+    // then 2 more every 10s, with a circular countdown to each reveal
     const len = primaryForm(it.term).length;
     quiz.hintN = 0;
     hint.hidden = false;
     hint.innerHTML = "<b>" + maskPrefix(it.term, 0) + "</b>";
-    timer.textContent = "+2 letters in 15s";
-    function revealStep() {
-      quiz.hintN += 2;
-      hint.innerHTML = "<b>" + maskPrefix(it.term, quiz.hintN) + "</b>";
-      if (quiz.hintN < len) quiz.hintTimer = setTimeout(revealStep, HINT_MS);
-      else timer.textContent = "";
+    function scheduleReveal(ms) {
+      startRing(ms);
+      quiz.hintTimer = setTimeout(function () {
+        quiz.hintN += 2;
+        hint.innerHTML = "<b>" + maskPrefix(it.term, quiz.hintN) + "</b>";
+        if (quiz.hintN < len) scheduleReveal(HINT_STEP_MS);
+        else stopRing();
+      }, ms);
     }
-    quiz.hintTimer = setTimeout(revealStep, HINT_MS);
+    scheduleReveal(HINT_FIRST_MS);
   }
 
   function submitQ() {
@@ -597,7 +636,6 @@
     fb.innerHTML = (ok ? "✓ correct" : "✗ answer: <b>" + primaryForm(it.term) + "</b>") +
       (it.example ? '<span class="qex">“' + it.example + "”</span>" : "");
     ov.querySelector(".srs-qscore").textContent = quiz.correct + " correct";
-    ov.querySelector(".srs-qtimer").textContent = "";
     const last = quiz.i >= quiz.items.length - 1;
     ov.querySelector('[data-q="submit"]').textContent = last ? "See result ›" : "Next ›";
   }

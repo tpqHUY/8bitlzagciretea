@@ -1366,6 +1366,19 @@ ul.traps li .ex {
 .srs-qfeedback b { font-family: var(--serif); font-style: normal; font-size: 1.05rem; }
 .srs-qfeedback .qex { display: block; font-family: var(--serif); font-style: italic; color: var(--text-soft); margin-top: 0.4rem; font-size: 0.95rem; }
 .srs-qtimer { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); flex: 1; text-align: left; }
+/* circular countdown to the next hint reveal */
+.srs-ring { position: relative; width: 40px; height: 40px; flex: 0 0 auto; }
+.srs-ring[hidden] { display: none; }
+.srs-ring svg { width: 40px; height: 40px; transform: rotate(-90deg); display: block; }
+.srs-ring circle { fill: none; stroke-width: 3; }
+.srs-ring-bg { stroke: var(--hair); }
+.srs-ring-fg { stroke: var(--accent); stroke-dasharray: 100; stroke-dashoffset: 0; stroke-linecap: round; }
+.srs-ring-num {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) { .srs-ring-fg { transition: none !important; } }
 
 /* ---------- message / result view ---------- */
 .srs-view-msg { text-align: center; padding: 1.4rem 0.5rem 0.4rem; }
