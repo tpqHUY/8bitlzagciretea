@@ -313,7 +313,7 @@
   /* ---------- focus overlay: flashcard / quiz / message ---------- */
   const LOCK_MS = 30 * 60000;   // 30-minute lock after a failed quiz
   const HINT_FIRST_MS = 5000;   // first 2 letters after 5s
-  const HINT_STEP_MS = 10000;   // then 2 more letters every 10s
+  const HINT_STEP_MS = 5000;    // then 2 more letters every 5s
   const PASS_RATE = 0.8;        // 80% to pass the quiz
 
   // failed-quiz locks are device-local (not synced)
