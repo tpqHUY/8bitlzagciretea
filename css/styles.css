@@ -134,9 +134,20 @@ body::before {
   width: 30px;
   display: block;
   flex: none;
+  background-color: var(--accent);          /* recoloured to the current section's primary */
+  -webkit-mask: url(../assets/logo.png) center / contain no-repeat;
+  mask: url(../assets/logo.png) center / contain no-repeat;
+  transition: background-color 0.18s;
 }
 .brand strong { align-self: center; }
-.brand strong { color: #0f5c57; font-weight: 600; }  /* brand teal, constant across modes */
+/* "8BIT" wordmark — carries the current section's primary colour */
+.brand strong {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.2em;
+  transition: color 0.18s;
+}
 .brand span { color: var(--text-faint); }
 .band-chip {
   font-family: var(--mono);
