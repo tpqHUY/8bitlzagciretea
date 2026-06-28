@@ -575,7 +575,7 @@ body[data-mode^="toeic-"] .srs-cam { border-color: #bfe1d0; }
 @media (min-width: 901px) {
   .nav {
     background: var(--accent);
-    border-radius: 14px;
+    border-radius: 0 0 14px 14px;   /* square top, rounded bottom corners only */
     padding: 1.5rem 1.3rem;
     box-shadow: var(--shadow);
     top: 84px;
