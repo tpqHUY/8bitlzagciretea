@@ -317,20 +317,97 @@
     }).join("");
   }
 
-  /* the four criteria cards (Writing & Speaking) */
-  function criteriaHTML(arr) {
+  /* the four criteria cards. lo/hi label the weaker/stronger column
+     (IELTS uses Band 6 / Band 8; TOEIC S&W uses Lower / Higher). */
+  function criteriaHTML(arr, lo, hi) {
+    lo = lo || "Band 6"; hi = hi || "Band 8";
     return arr.map(function (c) {
       return (
         '<div class="crit">' +
           '<div class="crit-head"><div class="code"><span>' + c.code + '</span><span class="pct">' + c.pct + "</span></div>" +
             "<h4>" + c.name + "</h4><p>" + c.intro + "</p></div>" +
           '<div class="crit-body">' +
-            '<div class="crit-row b6"><span class="lbl">Band 6</span><p>' + c.b6 + "</p></div>" +
-            '<div class="crit-row b8"><span class="lbl">Band 8</span><p>' + c.b8 + "</p></div>" +
+            '<div class="crit-row b6"><span class="lbl">' + lo + '</span><p>' + c.b6 + "</p></div>" +
+            '<div class="crit-row b8"><span class="lbl">' + hi + '</span><p>' + c.b8 + "</p></div>" +
           "</div>" +
         "</div>"
       );
     }).join("");
+  }
+
+  /* a full S&W-style module (principles, criteria, techniques, structures,
+     tasks, practice, mistakes) rendered into a set of element ids. Used by
+     IELTS Speaking and both TOEIC S&W modes. */
+  function renderModule(data, ids, caseBase, lo, hi) {
+    if (!data) return;
+    const set = function (id, html) { const el = $(id); if (el) el.innerHTML = html; };
+    if (data.principles) set(ids.principles, principlesHTML(data.principles));
+    if (data.criteria) set(ids.criteria, criteriaHTML(data.criteria, lo, hi));
+    if (data.techniques) set(ids.techniques, techniquesHTML(data.techniques));
+    if (data.structures) set(ids.structures, structuresHTML(data.structures));
+    if (data.practice) set(ids.practice, practiceHTML(data.practice));
+    if (data.mistakes) set(ids.mistakes, mistakesHTML(data.mistakes));
+    const tasks = data.tasks || data.parts;
+    if (tasks) {
+      set(ids.tasks, tasks.map(function (c) {
+        return approachCaseHTML(c, caseBase + "-" + c.id, caseBase + "case-" + c.id);
+      }).join(""));
+      const nav = $(ids.nav);
+      if (nav) nav.insertAdjacentHTML("beforeend", tasks.map(function (c) {
+        return '<a href="#' + caseBase + 'case-' + c.id + '"><span class="idx">' + c.no + "</span> " + c.title + "</a>";
+      }).join(""));
+    }
+  }
+
+  /* a language-bank section (render + search + theme-chip filter), reused for
+     the IELTS speaking and TOEIC S&W banks. labelFn maps a tag -> display name. */
+  function buildLangBank(data, ids, labelFn, srsPrefix) {
+    const grid = $(ids.grid);
+    if (!grid || !data) return;
+    const search = $(ids.search), chipsWrap = $(ids.chips), countEl = $(ids.count), emptyEl = $(ids.empty);
+    grid.innerHTML = data.map(function (v, i) {
+      return (
+        '<div class="vcard srs-card" data-tag="' + v.tag + '" data-i="' + i + '" data-srs-id="' + srsPrefix + i + '" tabindex="0" role="button">' +
+          '<div class="vhead"><h4>' + v.g + '</h4><span class="vtag">' + labelFn(v.tag) + "</span></div>" +
+          '<p class="vsense">' + v.sense + "</p>" +
+          '<div class="vwords">' + v.items.map(chip).join("") + "</div>" +
+        "</div>"
+      );
+    }).join("");
+    const tags = [];
+    data.forEach(function (v) { if (tags.indexOf(v.tag) === -1) tags.push(v.tag); });
+    let active = "all";
+    if (chipsWrap) chipsWrap.innerHTML =
+      '<button class="chip" data-tag="all" aria-pressed="true">All</button>' +
+      tags.map(function (t) { return '<button class="chip" data-tag="' + t + '" aria-pressed="false">' + labelFn(t) + "</button>"; }).join("");
+    const cards = $$(".vcard", grid);
+    function apply() {
+      const q = (search ? search.value : "" || "").trim().toLowerCase();
+      let shown = 0;
+      cards.forEach(function (card) {
+        const v = data[+card.getAttribute("data-i")];
+        const tagOk = active === "all" || v.tag === active;
+        const hay = (v.g + " " + v.sense + " " + v.tag + " " +
+          v.items.map(function (w) { return wText(w) + " " + wDef(w) + " " + wEx(w); }).join(" ")).toLowerCase();
+        const show = tagOk && (!q || hay.indexOf(q) !== -1);
+        card.hidden = !show;
+        if (show) shown++;
+        $$(".vwords span", card).forEach(function (sp) {
+          sp.classList.toggle("hit", !!(q && sp.textContent.toLowerCase().indexOf(q) !== -1));
+        });
+      });
+      if (countEl) countEl.textContent = shown + " of " + data.length + " groups";
+      if (emptyEl) emptyEl.hidden = shown !== 0;
+    }
+    if (search) search.addEventListener("input", apply);
+    if (chipsWrap) chipsWrap.addEventListener("click", function (e) {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      active = chip.getAttribute("data-tag");
+      $$(".chip", chipsWrap).forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+      apply();
+    });
+    apply();
   }
 
   /* mistakes list (shared) */
@@ -377,92 +454,39 @@
      SPEAKING mode: principles, criteria, techniques, structures,
      parts, practice, mistakes, langbank
      ========================================================== */
-  if (window.SPEAKING) {
-    const S = window.SPEAKING;
+  renderModule(window.SPEAKING, {
+    principles: "#sPrinciples", criteria: "#sCriteria", techniques: "#sTechniques",
+    structures: "#sStructures", tasks: "#sParts", practice: "#sPractice",
+    mistakes: "#sMistakes", nav: "#navSParts"
+  }, "s", "Band 6", "Band 8");
 
-    const sPrin = $("#sPrinciples");
-    if (sPrin) sPrin.innerHTML = principlesHTML(S.principles);
+  const speakLabel = function (t) {
+    return t === "p1" ? "Part 1" : t === "p2" ? "Part 2" : t === "p3" ? "Part 3" : t === "all" ? "Any part" : t;
+  };
+  buildLangBank(window.SLANG, {
+    grid: "#sLangGrid", search: "#sLangSearch", chips: "#sLangChips", count: "#sLangCount", empty: "#sLangEmpty"
+  }, speakLabel, "s:");
 
-    const sCrit = $("#sCriteria");
-    if (sCrit) sCrit.innerHTML = criteriaHTML(S.criteria);
+  /* ---------- TOEIC Speaking & Writing (the S&W test) ---------- */
+  const swLabel = function (t) { return t === "any" ? "Any task" : t.replace("-", "–"); };
 
-    const sTech = $("#sTechniques");
-    if (sTech) sTech.innerHTML = techniquesHTML(S.techniques);
+  renderModule(window.TOEIC_SP, {
+    principles: "#tspPrinciples", criteria: "#tspCriteria", techniques: "#tspTechniques",
+    structures: "#tspStructures", tasks: "#tspTasks", practice: "#tspPractice",
+    mistakes: "#tspMistakes", nav: "#navTSP"
+  }, "tsp", "Lower", "Higher");
+  buildLangBank(window.TSPLANG, {
+    grid: "#tspLangGrid", search: "#tspLangSearch", chips: "#tspLangChips", count: "#tspLangCount", empty: "#tspLangEmpty"
+  }, swLabel, "ts:");
 
-    const sStruct = $("#sStructures");
-    if (sStruct) sStruct.innerHTML = structuresHTML(S.structures);
-
-    const sParts = $("#sParts");
-    if (sParts) sParts.innerHTML = S.parts.map(speakingCaseHTML).join("");
-
-    const sPrac = $("#sPractice");
-    if (sPrac) sPrac.innerHTML = practiceHTML(S.practice);
-
-    const sMis = $("#sMistakes");
-    if (sMis) sMis.innerHTML = mistakesHTML(S.mistakes);
-
-    // speaking part nav links
-    const nSP = $("#navSParts");
-    if (nSP) nSP.insertAdjacentHTML("beforeend", S.parts.map(function (c) {
-      return '<a href="#scase-' + c.id + '"><span class="idx">' + c.no + "</span> " + c.title + "</a>";
-    }).join(""));
-  }
-
-  /* ---------- speaking language bank: render + search + filter ---------- */
-  (function slang() {
-    const grid = $("#sLangGrid");
-    if (!grid || !window.SLANG) return;
-    const search = $("#sLangSearch"), chipsWrap = $("#sLangChips"), countEl = $("#sLangCount"), emptyEl = $("#sLangEmpty");
-    const sLabel = function (t) {
-      return t === "p1" ? "Part 1" : t === "p2" ? "Part 2" : t === "p3" ? "Part 3" : t === "all" ? "Any part" : t;
-    };
-
-    grid.innerHTML = SLANG.map(function (v, i) {
-      return (
-        '<div class="vcard srs-card" data-tag="' + v.tag + '" data-i="' + i + '" data-srs-id="s:' + i + '" tabindex="0" role="button">' +
-          '<div class="vhead"><h4>' + v.g + '</h4><span class="vtag">' + sLabel(v.tag) + "</span></div>" +
-          '<p class="vsense">' + v.sense + "</p>" +
-          '<div class="vwords">' + v.items.map(chip).join("") + "</div>" +
-        "</div>"
-      );
-    }).join("");
-
-    const tags = [];
-    SLANG.forEach(function (v) { if (tags.indexOf(v.tag) === -1) tags.push(v.tag); });
-    let active = "all";
-    chipsWrap.innerHTML =
-      '<button class="chip" data-tag="all" aria-pressed="true">All</button>' +
-      tags.map(function (t) { return '<button class="chip" data-tag="' + t + '" aria-pressed="false">' + sLabel(t) + "</button>"; }).join("");
-
-    const cards = $$(".vcard", grid);
-    function apply() {
-      const q = (search.value || "").trim().toLowerCase();
-      let shown = 0;
-      cards.forEach(function (card) {
-        const v = SLANG[+card.getAttribute("data-i")];
-        const tagOk = active === "all" || v.tag === active;
-        const hay = (v.g + " " + v.sense + " " + v.tag + " " +
-          v.items.map(function (w) { return wText(w) + " " + wDef(w) + " " + wEx(w); }).join(" ")).toLowerCase();
-        const show = tagOk && (!q || hay.indexOf(q) !== -1);
-        card.hidden = !show;
-        if (show) shown++;
-        $$(".vwords span", card).forEach(function (sp) {
-          sp.classList.toggle("hit", !!(q && sp.textContent.toLowerCase().indexOf(q) !== -1));
-        });
-      });
-      countEl.textContent = shown + " of " + SLANG.length + " groups";
-      emptyEl.hidden = shown !== 0;
-    }
-    search.addEventListener("input", apply);
-    chipsWrap.addEventListener("click", function (e) {
-      const chip = e.target.closest(".chip");
-      if (!chip) return;
-      active = chip.getAttribute("data-tag");
-      $$(".chip", chipsWrap).forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
-      apply();
-    });
-    apply();
-  })();
+  renderModule(window.TOEIC_WR, {
+    principles: "#twrPrinciples", criteria: "#twrCriteria", techniques: "#twrTechniques",
+    structures: "#twrStructures", tasks: "#twrTasks", practice: "#twrPractice",
+    mistakes: "#twrMistakes", nav: "#navTWR"
+  }, "twr", "Lower", "Higher");
+  buildLangBank(window.TWRLANG, {
+    grid: "#twrLangGrid", search: "#twrLangSearch", chips: "#twrLangChips", count: "#twrLangCount", empty: "#twrLangEmpty"
+  }, swLabel, "tw:");
 
   /* ---------- writing language bank: render + search + filter ---------- */
   (function wlang() {

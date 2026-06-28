@@ -104,6 +104,18 @@
       steps: v.items.map(wStep)
     };
   });
+  (window.TSPLANG || []).forEach(function (v, i) {
+    reg["ts:" + i] = {
+      title: v.g, sense: v.sense, note: "",
+      steps: v.items.map(wStep)
+    };
+  });
+  (window.TWRLANG || []).forEach(function (v, i) {
+    reg["tw:" + i] = {
+      title: v.g, sense: v.sense, note: "",
+      steps: v.items.map(wStep)
+    };
+  });
 
   /* ---------- Cambridge dictionary link (audio pronunciation) ---------- */
   function cambridgeURL(term) {
@@ -258,7 +270,7 @@
 
   /* ---------- legends (per section) ---------- */
   function injectLegends() {
-    [["vocab", "v:"], ["confus", "c:"], ["colloc", "k:"], ["w-lang", "w:"], ["s-lang", "s:"]].forEach(function (pair) {
+    [["vocab", "v:"], ["confus", "c:"], ["colloc", "k:"], ["w-lang", "w:"], ["s-lang", "s:"], ["tsp-lang", "ts:"], ["twr-lang", "tw:"]].forEach(function (pair) {
       const sec = document.getElementById(pair[0]);
       if (!sec) return;
       const head = sec.querySelector(".section-head");

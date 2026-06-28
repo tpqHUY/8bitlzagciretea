@@ -251,11 +251,18 @@ body[data-mode^="toeic-"] {
 body[data-mode^="toeic-"] .hero h1,
 body[data-mode^="toeic-"] .section-head h2,
 body[data-mode^="toeic-"] .case-title h3,
-body[data-mode^="toeic-"] .principle h4 {
+body[data-mode^="toeic-"] .principle h4,
+body[data-mode^="toeic-"] .crit-head h4,
+body[data-mode^="toeic-"] .struct-head h4,
+body[data-mode^="toeic-"] .drill-head h4 {
   font-family: var(--sans);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+/* card headings are smaller — keep them a touch lighter than the display sans */
+body[data-mode^="toeic-"] .crit-head h4,
+body[data-mode^="toeic-"] .struct-head h4,
+body[data-mode^="toeic-"] .drill-head h4 { font-weight: 600; font-size: 1.05rem; }
 body[data-mode^="toeic-"] .hero h1 { line-height: 1.06; }
 body[data-mode^="toeic-"] .hero h1 em { font-style: normal; }
 /* scoreboard-style mono numbers */

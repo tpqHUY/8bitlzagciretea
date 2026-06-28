@@ -27,6 +27,8 @@
       <button class="mode-btn" role="tab" data-mode="speaking" aria-selected="false" title="IELTS Speaking">IELTS S</button>
       <button class="mode-btn" role="tab" data-mode="toeic-lc" aria-selected="false" title="TOEIC Listening">TOEIC L</button>
       <button class="mode-btn" role="tab" data-mode="toeic-rc" aria-selected="false" title="TOEIC Reading">TOEIC R</button>
+      <button class="mode-btn" role="tab" data-mode="toeic-sp" aria-selected="false" title="TOEIC Speaking">TOEIC S</button>
+      <button class="mode-btn" role="tab" data-mode="toeic-wr" aria-selected="false" title="TOEIC Writing">TOEIC W</button>
     </div>
     <div class="topbar-right">
       <div class="band-chip">TARGET BAND 8.0</div>
@@ -124,6 +126,46 @@
           <div class="nav-group" id="navTRC">
             <p class="nav-group-title">Parts</p>
             <!-- RC part links injected by JS -->
+          </div>
+        </div>
+
+        <div class="nav-mode" data-mode="toeic-sp" hidden>
+          <div class="nav-group">
+            <p class="nav-group-title">Foundations</p>
+            <a href="#tsp-intro"><span class="idx">00</span> How it is scored</a>
+            <a href="#tsp-criteria"><span class="idx">S1</span> What is scored</a>
+            <a href="#tsp-technique"><span class="idx">S2</span> High-score techniques</a>
+            <a href="#tsp-structures"><span class="idx">S3</span> Power structures</a>
+          </div>
+          <div class="nav-group" id="navTSP">
+            <p class="nav-group-title">The 11 questions</p>
+            <!-- task links injected by JS -->
+          </div>
+          <div class="nav-group">
+            <p class="nav-group-title">Master it</p>
+            <a href="#tsp-practice"><span class="idx">S4</span> Practice routine</a>
+            <a href="#tsp-mistakes"><span class="idx">S5</span> Common mistakes</a>
+            <a href="#tsp-lang"><span class="idx">S6</span> Language bank</a>
+          </div>
+        </div>
+
+        <div class="nav-mode" data-mode="toeic-wr" hidden>
+          <div class="nav-group">
+            <p class="nav-group-title">Foundations</p>
+            <a href="#twr-intro"><span class="idx">00</span> How it is scored</a>
+            <a href="#twr-criteria"><span class="idx">W1</span> What is scored</a>
+            <a href="#twr-technique"><span class="idx">W2</span> High-score techniques</a>
+            <a href="#twr-structures"><span class="idx">W3</span> Power structures</a>
+          </div>
+          <div class="nav-group" id="navTWR">
+            <p class="nav-group-title">The 8 questions</p>
+            <!-- task links injected by JS -->
+          </div>
+          <div class="nav-group">
+            <p class="nav-group-title">Master it</p>
+            <a href="#twr-practice"><span class="idx">W4</span> Practice routine</a>
+            <a href="#twr-mistakes"><span class="idx">W5</span> Common mistakes</a>
+            <a href="#twr-lang"><span class="idx">W6</span> Language bank</a>
           </div>
         </div>
 
@@ -857,6 +899,247 @@
       </section>
      </div><!-- /view toeic-rc -->
 
+     <!-- ========================================================= -->
+     <!-- ================  TOEIC SPEAKING (S&W)  ================= -->
+     <!-- ========================================================= -->
+     <div class="view" data-view="toeic-sp" hidden>
+      <section class="hero">
+        <span class="eyebrow">TOEIC · Speaking test</span>
+        <h1>Speak to the <em>clock</em> &mdash; fill every second.</h1>
+        <p class="lede">
+          The TOEIC Speaking test is eleven questions into a microphone, each on a strict timer
+          with no second take. It rewards preparation and frameworks, not improvisation: a fixed
+          routine for each task type, relevant content to the last second, and clear delivery.
+          Here is how all eleven questions work, what each one is scored on, and how to train them.</p>
+        <div class="omr" aria-hidden="true">
+          <span class="bub fill">A</span><span class="bub">B</span><span class="bub">C</span><span class="bub">D</span>
+        </div>
+        <div class="timing">
+          <div class="cell"><div class="big">11</div><div class="lab">questions</div><p>Read aloud · describe · respond · respond with info · opinion.</p></div>
+          <div class="cell"><div class="big">~20<span style="font-size:1rem">min</span></div><div class="lab">strictly timed</div><p>One take each &mdash; no pause, no replay, no going back.</p></div>
+          <div class="cell"><div class="big">0&ndash;200</div><div class="lab">scaled score</div><p>Reported in 8 proficiency levels, separate from L&amp;R.</p></div>
+          <div class="cell"><div class="big">3</div><div class="lab">things scored</div><p>Delivery · language use · relevance &amp; completeness.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="tsp-intro">
+        <div class="section-head">
+          <span class="eyebrow">00 · How to play it</span>
+          <h2>How it is scored</h2>
+          <p>Four habits decide most of your Speaking score &mdash; long before vocabulary does.</p>
+        </div>
+        <div class="principles" id="tspPrinciples"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-criteria">
+        <div class="section-head">
+          <span class="eyebrow">S1 · What earns the marks</span>
+          <h2>What is scored</h2>
+          <p>The dimensions raters listen for, and what separates a lower from a higher score on each.</p>
+        </div>
+        <div class="crit-grid" id="tspCriteria"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-technique">
+        <div class="section-head">
+          <span class="eyebrow">S2 · The moves that lift a score</span>
+          <h2>High-score techniques</h2>
+          <p>Concrete, repeatable moves &mdash; each tied to what it raises. Drill them until they&rsquo;re automatic.</p>
+        </div>
+        <div class="pattern-grid" id="tspTechniques"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-structures">
+        <div class="section-head">
+          <span class="eyebrow">S3 · The sentences that score</span>
+          <h2>Power structures</h2>
+          <p>Ready-made spoken frames for each task &mdash; learn the shape, then slot in the specifics on the day.</p>
+        </div>
+        <div id="tspStructures"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-tasks">
+        <div class="section-head">
+          <span class="eyebrow">The eleven questions</span>
+          <h2>Speaking, task by task</h2>
+          <p>Each task type gets three views: the <b>approach</b> (how to attack it), the
+            <b>structure</b> (a template for your response), and the <b>pitfalls</b> built for it.</p>
+        </div>
+        <div id="tspTasks"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-practice">
+        <div class="section-head">
+          <span class="eyebrow">S4 · How to train</span>
+          <h2>Practice routine</h2>
+          <p>Recorded, timed reps build the frameworks and delivery this test rewards. Make a daily rhythm from these.</p>
+        </div>
+        <div id="tspPractice"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-mistakes">
+        <div class="section-head">
+          <span class="eyebrow">S5 · Know the enemy</span>
+          <h2>Common mistakes</h2>
+          <p>The habits that quietly cap a Speaking score. Each is avoidable once you can hear it.</p>
+        </div>
+        <div class="card"><ul class="traps" id="tspMistakes"><!-- injected by JS --></ul></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="tsp-lang">
+        <div class="section-head">
+          <span class="eyebrow">S6 · The raw material</span>
+          <h2>Language bank</h2>
+          <p>Reusable spoken frames grouped by task. Tap a card to drill it as a flashcard; spaced repetition is on.</p>
+        </div>
+        <div class="vocab-tools">
+          <label class="vocab-search">
+            <span class="sr-only">Search phrases</span>
+            <input type="search" id="tspLangSearch" placeholder="Search a function or phrase — e.g. picture, opinion, schedule&hellip;" autocomplete="off" />
+          </label>
+          <div class="chips" id="tspLangChips" role="group" aria-label="Filter by task"></div>
+        </div>
+        <div class="vocab-count" id="tspLangCount"></div>
+        <div class="vocab-grid" id="tspLangGrid"><!-- injected by JS --></div>
+        <p class="vocab-empty" id="tspLangEmpty" hidden>No match — try a broader term, or clear the filter.</p>
+      </section>
+     </div><!-- /view toeic-sp -->
+
+     <!-- ========================================================= -->
+     <!-- ================  TOEIC WRITING (S&W)  ================== -->
+     <!-- ========================================================= -->
+     <div class="view" data-view="toeic-wr" hidden>
+      <section class="hero">
+        <span class="eyebrow">TOEIC · Writing test</span>
+        <h1>Correct, complete, <em>on the brief</em>.</h1>
+        <p class="lede">
+          The TOEIC Writing test is eight questions in about an hour: five picture sentences, two
+          business emails and one opinion essay. It rewards accuracy over ambition and doing
+          exactly what each task asks &mdash; the right words, every point covered, the right register.
+          Here is how all eight questions work, what each is scored on, and how to train them.</p>
+        <div class="omr" aria-hidden="true">
+          <span class="bub">A</span><span class="bub">B</span><span class="bub fill">C</span><span class="bub">D</span>
+        </div>
+        <div class="timing">
+          <div class="cell"><div class="big">8</div><div class="lab">questions</div><p>5 picture sentences · 2 emails · 1 opinion essay.</p></div>
+          <div class="cell"><div class="big">~60<span style="font-size:1rem">min</span></div><div class="lab">self-paced</div><p>Budget it yourself &mdash; the essay alone needs ~30 minutes.</p></div>
+          <div class="cell"><div class="big">0&ndash;200</div><div class="lab">scaled score</div><p>Reported in 9 proficiency levels, separate from L&amp;R.</p></div>
+          <div class="cell"><div class="big">4</div><div class="lab">things scored</div><p>Grammar · vocabulary · organisation · task completion.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="twr-intro">
+        <div class="section-head">
+          <span class="eyebrow">00 · How to play it</span>
+          <h2>How it is scored</h2>
+          <p>Four habits decide most of your Writing score &mdash; before any clever vocabulary does.</p>
+        </div>
+        <div class="principles" id="twrPrinciples"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-criteria">
+        <div class="section-head">
+          <span class="eyebrow">W1 · What earns the marks</span>
+          <h2>What is scored</h2>
+          <p>The dimensions raters mark, and what separates a lower from a higher score on each.</p>
+        </div>
+        <div class="crit-grid" id="twrCriteria"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-technique">
+        <div class="section-head">
+          <span class="eyebrow">W2 · The moves that lift a score</span>
+          <h2>High-score techniques</h2>
+          <p>Concrete, repeatable moves &mdash; each tied to what it raises. Use them deliberately on each task.</p>
+        </div>
+        <div class="pattern-grid" id="twrTechniques"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-structures">
+        <div class="section-head">
+          <span class="eyebrow">W3 · The sentences that score</span>
+          <h2>Power structures</h2>
+          <p>Reliable frames for picture sentences, emails and the essay &mdash; learn the shape, then pour in your content.</p>
+        </div>
+        <div id="twrStructures"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-tasks">
+        <div class="section-head">
+          <span class="eyebrow">The eight questions</span>
+          <h2>Writing, task by task</h2>
+          <p>Each task type gets three views: the <b>approach</b> (how to attack it), the
+            <b>structure</b> (a blueprint for your response), and the <b>pitfalls</b> built for it.</p>
+        </div>
+        <div id="twrTasks"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-practice">
+        <div class="section-head">
+          <span class="eyebrow">W4 · How to train</span>
+          <h2>Practice routine</h2>
+          <p>Timed, marked reps with a feedback loop &mdash; under the clock, against the criteria. Build a weekly rhythm.</p>
+        </div>
+        <div id="twrPractice"><!-- injected by JS --></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-mistakes">
+        <div class="section-head">
+          <span class="eyebrow">W5 · Know the enemy</span>
+          <h2>Common mistakes</h2>
+          <p>The recurring errors that cap a Writing score. Each one is avoidable once you can name it.</p>
+        </div>
+        <div class="card"><ul class="traps" id="twrMistakes"><!-- injected by JS --></ul></div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="section" id="twr-lang">
+        <div class="section-head">
+          <span class="eyebrow">W6 · The raw material</span>
+          <h2>Language bank</h2>
+          <p>Reusable written frames grouped by task &mdash; picture connectors, email phrases, essay linkers.
+            Tap a card to drill it as a flashcard; spaced repetition is on.</p>
+        </div>
+        <div class="vocab-tools">
+          <label class="vocab-search">
+            <span class="sr-only">Search phrases</span>
+            <input type="search" id="twrLangSearch" placeholder="Search a function or phrase — e.g. email, essay, because&hellip;" autocomplete="off" />
+          </label>
+          <div class="chips" id="twrLangChips" role="group" aria-label="Filter by task"></div>
+        </div>
+        <div class="vocab-count" id="twrLangCount"></div>
+        <div class="vocab-grid" id="twrLangGrid"><!-- injected by JS --></div>
+        <p class="vocab-empty" id="twrLangEmpty" hidden>No match — try a broader term, or clear the filter.</p>
+      </section>
+     </div><!-- /view toeic-wr -->
+
     </main>
   </div>
 
@@ -872,6 +1155,7 @@
   <script src="js/models.js"></script>
   <script src="js/speaking.js"></script>
   <script src="js/toeic.js"></script>
+  <script src="js/toeicsw.js"></script>
   <script src="js/main.js"></script>
   <script src="js/srs.js"></script>
   <script src="js/firebase-config.js"></script>
