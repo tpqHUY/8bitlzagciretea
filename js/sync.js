@@ -16,10 +16,47 @@
 
   function setBtn(text, opts) {
     if (!btn) return;
-    btn.textContent = text;
+    btn.classList.remove("is-avatar", "is-initials");
+    btn.textContent = text;                 // clears any avatar <img> too
     btn.disabled = !!(opts && opts.disabled);
     btn.classList.toggle("signed-in", !!(opts && opts.signedIn));
-    if (opts && opts.title) btn.title = opts.title;
+    btn.title = (opts && opts.title) || "";
+    btn.removeAttribute("aria-label");
+  }
+
+  function initials(name) {
+    const parts = String(name).trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return "?";
+    if (parts.length === 1) return parts[0].slice(0, 1).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  // signed in: the button becomes the user's Google avatar (or initials);
+  // clicking it still signs out (handled by the existing click listener).
+  function setAvatar(user) {
+    if (!btn) return;
+    const name = user.displayName || user.email || "account";
+    btn.disabled = false;
+    btn.classList.add("signed-in");
+    btn.title = "Sign out · " + name;
+    btn.setAttribute("aria-label", "Sign out — signed in as " + name);
+    const photo = user.photoURL;
+    if (photo) {
+      btn.classList.add("is-avatar");
+      btn.classList.remove("is-initials");
+      // referrerpolicy avoids Google occasionally 403-ing the avatar request
+      btn.innerHTML = '<img class="avatar" alt="" referrerpolicy="no-referrer" src="' + photo + '" />';
+      const img = btn.querySelector("img");
+      if (img) img.addEventListener("error", function () {
+        btn.classList.remove("is-avatar");
+        btn.classList.add("is-initials");
+        btn.textContent = initials(name);
+      });
+    } else {
+      btn.classList.remove("is-avatar");
+      btn.classList.add("is-initials");
+      btn.textContent = initials(name);
+    }
   }
 
   // Google blocks OAuth inside embedded/in-app browsers (Messenger, Instagram,
@@ -142,8 +179,7 @@
     auth.onAuthStateChanged(authInstance, async function (user) {
       if (user) {
         uid = user.uid;
-        const name = (user.displayName || user.email || "account").split(" ")[0];
-        setBtn("Sign out · " + name, { signedIn: true });
+        setAvatar(user);
         try {
           // one-time merge: pull remote, merge with local, write the union back
           const snap = await fs.getDoc(userRef());
