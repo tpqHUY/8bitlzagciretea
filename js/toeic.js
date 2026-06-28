@@ -31,16 +31,16 @@ const TOEIC = {
         { name: "Statement grammar", ex: "present continuous (action) · &lsquo;is being + pp&rsquo; (action on an object) · &lsquo;has been + pp&rsquo; (finished state)." }
       ],
       tips: [
-        { t: "<b>Study the photo before the audio starts.</b> Ask: who? what action? where?", ex: "Pre-load likely words: a worker, a desk, holding, leaning, on the wall." },
-        { t: "Decide if it is a <b>people photo</b> (focus on actions) or a <b>scene/object photo</b> (focus on location/state).", ex: "People &rarr; &lsquo;She is typing&rsquo;. Objects &rarr; &lsquo;Chairs are arranged in rows&rsquo;." },
-        { t: "Hold all four in mind and <b>eliminate</b> as you hear each one; keep the last one standing.", ex: "A (no &mdash; wrong action) &middot; B (no &mdash; not shown) &middot; C (yes, matches) &middot; D (no) &rarr; mark C." },
-        { t: "Match the <b>verb tense and subject</b> exactly to the image.", ex: "&lsquo;is being loaded&rsquo; (action in progress) vs &lsquo;has been loaded&rsquo; (already done)." }
+        { t: "<b>Study the photo before the audio starts.</b> Ask: who? what action? where?", ex: ["Pre-load likely words: a worker, a desk, holding, leaning, on the wall.", "Decide first: is this about <em>people</em> or about the <em>scene</em>?"] },
+        { t: "Decide if it is a <b>people photo</b> (focus on actions) or a <b>scene/object photo</b> (focus on location/state).", ex: ["People &rarr; &lsquo;She is typing&rsquo;. Objects &rarr; &lsquo;Chairs are arranged in rows&rsquo;.", "A crowd &rarr; listen for &lsquo;they are&hellip;&rsquo;; an empty room &rarr; &lsquo;there is/are&hellip;&rsquo;."] },
+        { t: "Hold all four in mind and <b>eliminate</b> as you hear each one; keep the last one standing.", ex: ["A (no &mdash; wrong action) &middot; B (no &mdash; not shown) &middot; C (yes) &middot; D (no) &rarr; mark C.", "Don&rsquo;t wait for a &lsquo;perfect&rsquo; option &mdash; keep the only one with no error."] },
+        { t: "Match the <b>verb tense and subject</b> exactly to the image.", ex: ["&lsquo;is being loaded&rsquo; (in progress) vs &lsquo;has been loaded&rsquo; (already done).", "Check the subject too: &lsquo;The men are&hellip;&rsquo; is wrong if only one person is shown."] }
       ],
       traps: [
-        { n: "Similar sounds.", d: "A wrong option swaps in a word that sounds like a right one.", ex: "&lsquo;working&rsquo; vs &lsquo;walking&rsquo;, &lsquo;copy&rsquo; vs &lsquo;coffee&rsquo;." },
-        { n: "Right object, wrong action.", d: "The noun is in the photo but the verb describes something not happening.", ex: "There is a car, but no one &lsquo;is washing&rsquo; it." },
-        { n: "Active vs passive state.", d: "&lsquo;is being painted&rsquo; needs a person painting now; &lsquo;has been painted&rsquo; just needs paint.", ex: "A finished wall &rarr; &lsquo;has been painted&rsquo; (right); &lsquo;is being painted&rsquo; with no painter in view is the trap." },
-        { n: "Plausible but not shown.", d: "A reasonable real-world guess the photo doesn&rsquo;t actually depict.", ex: "Reject anything you cannot see." }
+        { n: "Similar sounds.", d: "A wrong option swaps in a word that sounds like a right one.", ex: ["&lsquo;working&rsquo; vs &lsquo;walking&rsquo;, &lsquo;copy&rsquo; vs &lsquo;coffee&rsquo;.", "&lsquo;writing&rsquo; vs &lsquo;riding&rsquo;, &lsquo;glasses&rsquo; vs &lsquo;glass&rsquo;."] },
+        { n: "Right object, wrong action.", d: "The noun is in the photo but the verb describes something not happening.", ex: ["There is a car, but no one &lsquo;is washing&rsquo; it.", "A laptop sits on the desk, but nobody &lsquo;is using&rsquo; it."] },
+        { n: "Active vs passive state.", d: "&lsquo;is being painted&rsquo; needs a person painting now; &lsquo;has been painted&rsquo; just needs paint.", ex: ["A finished wall &rarr; &lsquo;has been painted&rsquo; (right); &lsquo;is being painted&rsquo; with no painter is the trap.", "Stocked shelves &rarr; &lsquo;are stocked&rsquo;, not &lsquo;are being stocked&rsquo;."] },
+        { n: "Plausible but not shown.", d: "A reasonable real-world guess the photo doesn&rsquo;t actually depict.", ex: ["Reject anything you cannot see.", "A kitchen photo &ne; &lsquo;they are cooking&rsquo; unless someone is actually cooking."] }
       ]
     },
     {
@@ -64,16 +64,16 @@ const TOEIC = {
         { name: "Indirect / embedded", ex: "&lsquo;Do you know when it opens?&rsquo; &rarr; the time, or &lsquo;Let me find out.&rsquo;" }
       ],
       tips: [
-        { t: "<b>Lock onto the first word</b> (Who / Where / When / Why / How / Do / Are / Have&hellip;).", ex: "It tells you what kind of answer is even possible." },
-        { t: "A <b>WH- question cannot</b> be answered &lsquo;Yes / No&rsquo; &mdash; eliminate those instantly.", ex: "&lsquo;Where is the report?&rsquo; &rarr; &lsquo;Yes, I did&rsquo; is impossible." },
-        { t: "Expect <b>indirect answers</b> &mdash; they are often correct.", ex: "&lsquo;When does it start?&rsquo; &rarr; &lsquo;I&rsquo;ll check the schedule.&rsquo;" },
-        { t: "For statements / tag questions, look for <b>agreement or a relevant reaction</b>.", ex: "&lsquo;This room is cold.&rsquo; &rarr; &lsquo;I&rsquo;ll turn up the heating.&rsquo;" }
+        { t: "<b>Lock onto the first word</b> (Who / Where / When / Why / How / Do / Are / Have&hellip;).", ex: ["It tells you what kind of answer is even possible.", "&lsquo;Who&rsquo; &rarr; a person; &lsquo;How long&rsquo; &rarr; a duration; &lsquo;Whose&rsquo; &rarr; an owner."] },
+        { t: "A <b>WH- question cannot</b> be answered &lsquo;Yes / No&rsquo; &mdash; eliminate those instantly.", ex: ["&lsquo;Where is the report?&rsquo; &rarr; &lsquo;Yes, I did&rsquo; is impossible.", "&lsquo;When does it close?&rsquo; &rarr; cross off any &lsquo;No, &hellip;&rsquo; at once."] },
+        { t: "Expect <b>indirect answers</b> &mdash; they are often correct.", ex: ["&lsquo;When does it start?&rsquo; &rarr; &lsquo;I&rsquo;ll check the schedule.&rsquo;", "&lsquo;Who&rsquo;s leading it?&rsquo; &rarr; &lsquo;Hasn&rsquo;t it been decided yet?&rsquo;", "&lsquo;Where&rsquo;s Mr Lee?&rsquo; &rarr; &lsquo;He called in sick.&rsquo;"] },
+        { t: "For statements / tag questions, look for <b>agreement or a relevant reaction</b>.", ex: ["&lsquo;This room is cold.&rsquo; &rarr; &lsquo;I&rsquo;ll turn up the heating.&rsquo;", "&lsquo;The meeting went well, didn&rsquo;t it?&rsquo; &rarr; &lsquo;Yes, better than expected.&rsquo;"] }
       ],
       traps: [
-        { n: "Repeated-word trap.", d: "A response echoes a word from the prompt &mdash; almost always wrong.", ex: "&lsquo;Did you finish the report?&rsquo; &rarr; &lsquo;The report is on the desk&rsquo; (sounds related, doesn&rsquo;t answer)." },
-        { n: "Similar-sounding word.", d: "A near-homophone planted to mislead.", ex: "&lsquo;fare&rsquo; vs &lsquo;fair&rsquo;, &lsquo;leave&rsquo; vs &lsquo;live&rsquo;." },
-        { n: "Yes/No to a WH- question.", d: "Grammatically impossible &mdash; a quick elimination.", ex: "&lsquo;Where&rsquo;s the manager?&rsquo; &rarr; &lsquo;Yes, this morning&rsquo; is impossible; &lsquo;In her office&rsquo; is right." },
-        { n: "Right topic, wrong response.", d: "On the same subject but not a logical reply to the actual question.", ex: "&lsquo;How was the trip?&rsquo; &rarr; &lsquo;Next Monday&rsquo; (right topic, but answers &lsquo;when&rsquo;, not &lsquo;how&rsquo;)." }
+        { n: "Repeated-word trap.", d: "A response echoes a word from the prompt &mdash; almost always wrong.", ex: ["&lsquo;Did you finish the report?&rsquo; &rarr; &lsquo;The report is on the desk&rsquo; (related, doesn&rsquo;t answer).", "&lsquo;When&rsquo;s the flight?&rsquo; &rarr; &lsquo;The flight was great&rsquo; (echoes &lsquo;flight&rsquo;, ignores &lsquo;when&rsquo;)."] },
+        { n: "Similar-sounding word.", d: "A near-homophone planted to mislead.", ex: ["&lsquo;fare&rsquo; vs &lsquo;fair&rsquo;, &lsquo;leave&rsquo; vs &lsquo;live&rsquo;.", "&lsquo;cost&rsquo; vs &lsquo;coast&rsquo;, &lsquo;quite&rsquo; vs &lsquo;quiet&rsquo;."] },
+        { n: "Yes/No to a WH- question.", d: "Grammatically impossible &mdash; a quick elimination.", ex: ["&lsquo;Where&rsquo;s the manager?&rsquo; &rarr; &lsquo;Yes, this morning&rsquo; is impossible; &lsquo;In her office&rsquo; is right.", "&lsquo;Why was it cancelled?&rsquo; &rarr; &lsquo;No, it wasn&rsquo;t&rsquo; cannot answer &lsquo;why&rsquo;."] },
+        { n: "Right topic, wrong response.", d: "On the same subject but not a logical reply to the actual question.", ex: ["&lsquo;How was the trip?&rsquo; &rarr; &lsquo;Next Monday&rsquo; (answers &lsquo;when&rsquo;, not &lsquo;how&rsquo;).", "&lsquo;Who ordered lunch?&rsquo; &rarr; &lsquo;At the new café&rsquo; (answers &lsquo;where&rsquo;)."] }
       ]
     },
     {
@@ -98,16 +98,16 @@ const TOEIC = {
         { name: "Scenarios", ex: "two colleagues, a customer&ndash;service call, a three-person discussion, or a set with a chart." }
       ],
       tips: [
-        { t: "<b>Read the three questions before the audio</b> and predict what to listen for.", ex: "Underline keywords: &lsquo;Why is the man calling?&rsquo;, &lsquo;What will the woman do next?&rsquo;" },
-        { t: "Questions follow the <b>conversation order</b> (Q1 = early, Q3 = late).", ex: "Q1 &lsquo;What is the problem?&rsquo; (start) &rarr; Q3 &lsquo;What will the man do next?&rsquo; (end)." },
-        { t: "Track <b>who says what</b> &mdash; detail is often attributed to a specific speaker.", ex: "Three-speaker sets love &lsquo;What does the second man suggest?&rsquo;" },
-        { t: "For graphic questions, the answer <b>links the audio to the visual</b> &mdash; don&rsquo;t just read the chart.", ex: "Audio: &lsquo;the 2 p.m. session&rsquo; &rarr; look up its room on the schedule." }
+        { t: "<b>Read the three questions before the audio</b> and predict what to listen for.", ex: ["Underline keywords: &lsquo;Why is the man calling?&rsquo;, &lsquo;What will the woman do next?&rsquo;", "Spot the type so you know to listen for a reason, a time or a plan."] },
+        { t: "Questions follow the <b>conversation order</b> (Q1 = early, Q3 = late).", ex: ["Q1 &lsquo;What is the problem?&rsquo; (start) &rarr; Q3 &lsquo;What will the man do next?&rsquo; (end).", "Once you hear the Q2 answer, the Q1 answer has already passed &mdash; don&rsquo;t backtrack."] },
+        { t: "Track <b>who says what</b> &mdash; detail is often attributed to a specific speaker.", ex: ["Three-speaker sets love &lsquo;What does the second man suggest?&rsquo;", "Note role/gender: &lsquo;the woman&rsquo;, &lsquo;the receptionist&rsquo;, &lsquo;the second speaker&rsquo;."] },
+        { t: "For graphic questions, the answer <b>links the audio to the visual</b> &mdash; don&rsquo;t just read the chart.", ex: ["Audio: &lsquo;the 2 p.m. session&rsquo; &rarr; look up its room on the schedule.", "The audio gives the <em>other</em> column (price, day, gate) &mdash; never the answer word itself."] }
       ],
       traps: [
-        { n: "Detail-swap distractor.", d: "A choice uses real words from the audio but the wrong number, time or place.", ex: "Audio: &lsquo;the order ships Friday&rsquo; &rarr; trap option says &lsquo;Thursday&rsquo;." },
-        { n: "Misattributed speaker.", d: "Something the woman said is offered as the man&rsquo;s view.", ex: "The woman booked the room, but a choice credits &lsquo;the man&rsquo; with the reservation." },
-        { n: "Mentioned-but-not-asked.", d: "True in the conversation but not the answer to this question.", ex: "They discuss price and a deadline; the question asks only about the deadline." },
-        { n: "Intent questions.", d: "&lsquo;Why does she say &hellip;?&rsquo; needs the context/feeling, not the literal meaning.", ex: "&lsquo;That&rsquo;s great&rsquo; can be genuine or sarcastic depending on context." }
+        { n: "Detail-swap distractor.", d: "A choice uses real words from the audio but the wrong number, time or place.", ex: ["Audio: &lsquo;the order ships Friday&rsquo; &rarr; trap says &lsquo;Thursday&rsquo;.", "Audio: &lsquo;Room 305&rsquo; &rarr; trap says &lsquo;Room 350&rsquo;."] },
+        { n: "Misattributed speaker.", d: "Something the woman said is offered as the man&rsquo;s view.", ex: ["The woman booked the room, but a choice credits &lsquo;the man&rsquo;.", "The client &mdash; not the manager &mdash; asked for the refund."] },
+        { n: "Mentioned-but-not-asked.", d: "True in the conversation but not the answer to this question.", ex: ["They discuss price and a deadline; the question asks only about the deadline.", "A place is named in passing, but the question wants the reason for the call."] },
+        { n: "Intent questions.", d: "&lsquo;Why does she say &hellip;?&rsquo; needs the context/feeling, not the literal meaning.", ex: ["&lsquo;That&rsquo;s great&rsquo; can be genuine or sarcastic depending on context.", "&lsquo;I&rsquo;ve seen the figures&rsquo; may mean &lsquo;you needn&rsquo;t explain&rsquo;, not the literal sense."] }
       ]
     },
     {
@@ -131,16 +131,16 @@ const TOEIC = {
         { name: "Instructions / training", ex: "how to use a machine or follow a procedure." }
       ],
       tips: [
-        { t: "<b>Identify the talk type from the first sentence</b> (speaker, audience, place).", ex: "&lsquo;Attention shoppers&hellip;&rsquo; = store announcement; &lsquo;You&rsquo;ve reached&hellip;&rsquo; = voicemail." },
-        { t: "Read the questions first; the <b>first</b> is often purpose/speaker/location.", ex: "&lsquo;Where would this be heard?&rsquo;, &lsquo;Who is the speaker?&rsquo;" },
-        { t: "The <b>last</b> question is often &lsquo;what will happen next&rsquo; or &lsquo;what are listeners asked to do&rsquo;.", ex: "Listen for the closing instruction or call to action." },
-        { t: "Map answers to the talk&rsquo;s order, just like Part 3.", ex: "Q1 comes from the opening line; Q3 from the closing instruction." }
+        { t: "<b>Identify the talk type from the first sentence</b> (speaker, audience, place).", ex: ["&lsquo;Attention shoppers&hellip;&rsquo; = store announcement; &lsquo;You&rsquo;ve reached&hellip;&rsquo; = voicemail.", "&lsquo;Welcome aboard&hellip;&rsquo; = transport; &lsquo;Thank you all for coming&hellip;&rsquo; = a speech."] },
+        { t: "Read the questions first; the <b>first</b> is often purpose/speaker/location.", ex: ["&lsquo;Where would this be heard?&rsquo;, &lsquo;Who is the speaker?&rsquo;", "&lsquo;What is the purpose?&rsquo; &rarr; usually answered in the first 1&ndash;2 lines."] },
+        { t: "The <b>last</b> question is often &lsquo;what will happen next&rsquo; or &lsquo;what are listeners asked to do&rsquo;.", ex: ["Listen for the closing instruction or call to action.", "&lsquo;Please press 2&hellip;&rsquo;, &lsquo;Visit our website&hellip;&rsquo;, &lsquo;Don&rsquo;t forget to&hellip;&rsquo; at the end."] },
+        { t: "Map answers to the talk&rsquo;s order, just like Part 3.", ex: ["Q1 comes from the opening line; Q3 from the closing instruction.", "Detail (Q2) sits in the middle &mdash; the dates, prices and names."] }
       ],
       traps: [
-        { n: "Specific-detail distractor.", d: "Right area of the talk, wrong figure / date / name.", ex: "Talk: &lsquo;the tour starts at 9 a.m.&rsquo; &rarr; trap option says &lsquo;10 a.m.&rsquo;" },
-        { n: "Misread purpose.", d: "A reason that&rsquo;s plausible but not the speaker&rsquo;s actual aim.", ex: "A sale advert &rarr; trap: &lsquo;to announce a new branch&rsquo; (plausible, not the real aim)." },
-        { n: "Future-action confusion.", d: "Mixing what already happened with what the speaker says will happen.", ex: "&lsquo;We have relocated&rsquo; (done) vs &lsquo;we will relocate&rsquo; (next) &mdash; a choice swaps the two." },
-        { n: "Paraphrase mismatch.", d: "The correct answer rewords the talk; a trap reuses its exact words about a side point.", ex: "Talk: &lsquo;the flight is delayed&rsquo; &rarr; answer &lsquo;the departure is postponed&rsquo;, not the option echoing &lsquo;flight&rsquo;." }
+        { n: "Specific-detail distractor.", d: "Right area of the talk, wrong figure / date / name.", ex: ["Talk: &lsquo;the tour starts at 9 a.m.&rsquo; &rarr; trap says &lsquo;10 a.m.&rsquo;", "Talk: &lsquo;a 20% discount&rsquo; &rarr; trap says &lsquo;12%&rsquo;."] },
+        { n: "Misread purpose.", d: "A reason that&rsquo;s plausible but not the speaker&rsquo;s actual aim.", ex: ["A sale advert &rarr; trap: &lsquo;to announce a new branch&rsquo;.", "A delay notice &rarr; trap: &lsquo;to apologise for poor service&rsquo;."] },
+        { n: "Future-action confusion.", d: "Mixing what already happened with what the speaker says will happen.", ex: ["&lsquo;We have relocated&rsquo; (done) vs &lsquo;we will relocate&rsquo; (next) &mdash; a choice swaps them.", "&lsquo;The road was closed&rsquo; (past) vs &lsquo;will be closed&rsquo; (upcoming)."] },
+        { n: "Paraphrase mismatch.", d: "The correct answer rewords the talk; a trap reuses its exact words about a side point.", ex: ["Talk: &lsquo;the flight is delayed&rsquo; &rarr; answer &lsquo;the departure is postponed&rsquo;, not the option echoing &lsquo;flight&rsquo;.", "Talk: &lsquo;free parking&rsquo; &rarr; answer &lsquo;parking at no cost&rsquo;."] }
       ]
     }
   ],

@@ -17,17 +17,20 @@
     return '<span' + (def ? ' title="' + escAttr(def) + '"' : "") + ">" + wText(it) + "</span>";
   }
 
+  /* ex may be a single string or an array of examples */
+  function exHTML(ex) {
+    if (!ex) return "";
+    const arr = Array.isArray(ex) ? ex : [ex];
+    return arr.map(function (e) { return '<span class="ex">' + e + "</span>"; }).join("");
+  }
+
   /* ---------- render case files ---------- */
   function stepsHTML(steps) {
     return (
       '<ol class="steps">' +
       steps
         .map(function (s) {
-          return (
-            "<li>" + s.t +
-            (s.ex ? '<span class="ex">' + s.ex + "</span>" : "") +
-            "</li>"
-          );
+          return "<li>" + s.t + exHTML(s.ex) + "</li>";
         })
         .join("") +
       "</ol>"
@@ -39,11 +42,7 @@
       '<ul class="traps">' +
       traps
         .map(function (t) {
-          return (
-            "<li><span class=\"name\">" + t.n + "</span> " + t.d +
-            (t.ex ? '<span class="ex">' + t.ex + "</span>" : "") +
-            "</li>"
-          );
+          return "<li><span class=\"name\">" + t.n + "</span> " + t.d + exHTML(t.ex) + "</li>";
         })
         .join("") +
       "</ul>"
