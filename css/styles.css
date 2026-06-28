@@ -188,6 +188,13 @@ body::before {
 .mode-btn[aria-selected="true"] { background: var(--accent); color: #fff; }
 .mode-btn:hover:not([aria-selected="true"]) { color: var(--text); }
 .mode-switch { flex-wrap: wrap; }
+.m-abbr { display: none; text-transform: none; letter-spacing: 0.04em; }
+/* small screens: replace full tab labels with short codes (IRe · IW · TLi…) */
+@media (max-width: 900px) {
+  .mode-btn .m-full { display: none; }
+  .mode-btn .m-abbr { display: inline; }
+  .mode-btn { padding: 0.42rem 0.66rem; }
+}
 @media (max-width: 760px) { .topbar .band-chip { display: none; } }
 @media (max-width: 620px) {
   .topbar { flex-wrap: wrap; row-gap: 0.5rem; }
@@ -607,6 +614,23 @@ body[data-mode^="toeic-"] .srs-cam { border-color: #bfe1d0; }
   font-weight: 600;
 }
 .nav a.active .idx { color: var(--accent); }
+
+/* scroll-spy: when a section becomes active, its index marker spins once
+   then bounces up — a livelier "you are here" cue. Re-runs each time a new
+   section is reached (the class is removed/re-added by the observer). */
+.nav a .idx { transform-origin: center; will-change: transform; }
+.nav a.active .idx { animation: idx-spin-bounce 0.78s ease-out; }
+@keyframes idx-spin-bounce {
+  0%   { transform: rotate(0)      translateY(0)    scale(1); }
+  42%  { transform: rotate(360deg) translateY(0)    scale(1.2); }
+  62%  { transform: rotate(360deg) translateY(-8px) scale(1.2); }
+  78%  { transform: rotate(360deg) translateY(0)    scale(1.08); }
+  89%  { transform: rotate(360deg) translateY(-3px) scale(1.08); }
+  100% { transform: rotate(360deg) translateY(0)    scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav a.active .idx { animation: none; }
+}
 
 /* Coloured sidebar (desktop): a solid panel in the section's primary colour,
    so the nav lifts clearly off the page. Each mode themes it via --accent;
