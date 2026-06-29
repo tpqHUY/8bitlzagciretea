@@ -1,4 +1,13 @@
 {
-  "sheetId": "PASTE_YOUR_GOOGLE_SHEET_ID_HERE",
-  "_help": "From the Sheet URL https://docs.google.com/spreadsheets/d/<ID>/edit copy the <ID> part here. Share the Sheet: Anyone with the link → Viewer."
+  "sheetId": "1uBBY2TErb8eti3VzZaUr9-jRcvm9ukWyj3F67x49yYM",
+  "gids": {
+    "Vocab": "0",
+    "Confusables": "808301058",
+    "Collocations": "1151944769",
+    "WritingLang": "1952149889",
+    "SpeakingLang": "1400286731",
+    "ToeicSpeakLang": "1054172485",
+    "ToeicWriteLang": "1201573702"
+  },
+  "_help": "Share the Sheet: Anyone with the link → Viewer. gids are read from each tab URL (…#gid=<gid>)."
 }

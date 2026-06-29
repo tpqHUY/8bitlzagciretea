@@ -20,8 +20,10 @@ const lib = require("./content-lib");
 const ROOT = path.join(__dirname, "..");
 const LOCAL = process.argv.includes("--local");
 
-let sheetId = "";
-try { sheetId = (JSON.parse(fs.readFileSync(path.join(__dirname, "content.config.json"), "utf8")).sheetId || ""); } catch (e) {}
+let cfg = {};
+try { cfg = JSON.parse(fs.readFileSync(path.join(__dirname, "content.config.json"), "utf8")); } catch (e) {}
+const sheetId = cfg.sheetId || "";
+const gids = cfg.gids || {};
 
 function get(url) {
   return new Promise(function (resolve, reject) {
@@ -42,9 +44,8 @@ function tabCSV(bank) {
   if (!sheetId || /PASTE|YOUR/i.test(sheetId)) {
     return Promise.reject(new Error("set sheetId in tools/content.config.json (or run with --local)"));
   }
-  const url = "https://docs.google.com/spreadsheets/d/" + sheetId +
-    "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(bank.tab);
-  return get(url);
+  const q = gids[bank.tab] ? "gid=" + encodeURIComponent(gids[bank.tab]) : "sheet=" + encodeURIComponent(bank.tab);
+  return get("https://docs.google.com/spreadsheets/d/" + sheetId + "/gviz/tq?tqx=out:csv&" + q);
 }
 
 (async function () {
@@ -54,6 +55,10 @@ function tabCSV(bank) {
     let csv;
     try { csv = await tabCSV(bank); }
     catch (e) { problems.push(bank.tab + ": " + e.message); continue; }
+    if (/^﻿?\s*<(?:!doctype|html)/i.test(csv)) {
+      problems.push(bank.tab + ": got a login/HTML page, not CSV — share the Sheet 'Anyone with the link → Viewer'.");
+      continue;
+    }
     const rows = lib.csvToObjects(csv);
     const errs = lib.validateRows(bank, rows);
     if (errs.length) { problems.push.apply(problems, errs); continue; }
