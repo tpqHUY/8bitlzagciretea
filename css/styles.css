@@ -1982,3 +1982,82 @@ html.night body[data-mode="writing"] .kbox { border-color: var(--hair-strong); }
   html.night .nav a.active { color: var(--accent); }
   html.night .nav a.active .idx { color: var(--accent); }
 }
+
+/* ============================================================
+   "Mark as learned" — progress tracking on TOEIC knowledge cards
+   ============================================================ */
+.learn-toggle {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  background: none;
+  border: 1px solid var(--hair-strong);
+  border-radius: 100px;
+  padding: 0.3em 0.7em 0.3em 0.55em;
+  margin-top: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.learn-toggle:hover { color: var(--text-soft); border-color: var(--text-faint); }
+.learn-toggle .lt-ic {
+  width: 0.92em; height: 0.92em;
+  flex: none;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  position: relative;
+}
+.learn-toggle.done {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.learn-toggle.done .lt-ic {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.learn-toggle.done .lt-ic::after {   /* checkmark */
+  content: "";
+  position: absolute;
+  left: 50%; top: 47%;
+  width: 0.2em; height: 0.4em;
+  border: solid #fff;
+  border-width: 0 1.6px 1.6px 0;
+  transform: translate(-50%, -58%) rotate(45deg);
+}
+/* a quiet "done" cue on the card itself */
+.case.is-learned { box-shadow: inset 4px 0 0 0 var(--accent), var(--shadow); }
+
+/* per-section progress bar (in the section head) */
+.learn-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.learn-progress .lp-bar {
+  width: 116px; height: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--hair);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.learn-progress .lp-bar > span {
+  display: block; height: 100%;
+  width: 0;
+  background: var(--accent);
+  border-radius: 100px;
+  transition: width 0.35s ease;
+}
+.learn-progress.complete .lp-text { color: var(--accent); }

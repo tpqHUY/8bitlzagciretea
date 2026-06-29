@@ -49,6 +49,10 @@
   /* ---------- change notifier + merge (for cloud sync) ---------- */
   let changeCb = null;
   function notifyChange() { if (changeCb) { try { changeCb(store); } catch (e) {} } }
+  // UI subscribers fired on ANY store change (local or remote) — lets other
+  // widgets (e.g. the TOEIC card-progress markers) re-render in sync.
+  const uiSubs = [];
+  function fireUI() { uiSubs.forEach(function (cb) { try { cb(); } catch (e) {} }); }
   function mergeStores(a, b) {
     const out = {};
     for (const k in a) out[k] = a[k];
@@ -766,6 +770,7 @@
       store = mergeStores(store, remote || {});
       save();
       applyAll();
+      fireUI();
       return JSON.parse(JSON.stringify(store));
     },
     // REPLACE the whole store (no merge). Used when a different account signs
@@ -775,10 +780,25 @@
       store = JSON.parse(JSON.stringify(remote || {}));
       save();
       applyAll();
+      fireUI();
       return JSON.parse(JSON.stringify(store));
     },
     // register a callback fired after every local change (study / reset)
-    onChange: function (cb) { changeCb = cb; }
+    onChange: function (cb) { changeCb = cb; },
+
+    /* ---- generic flags (e.g. "studied" marks on reference cards) ----
+       Stored in the same map as flashcard progress so they sync for free.
+       These ids have no DOM card, so the flashcard layer ignores them. */
+    has: function (id) { return !!store[id]; },
+    mark: function (id, on) {
+      if (on) store[id] = { level: 1, ts: now() };
+      else delete store[id];
+      save();
+      notifyChange();   // push to cloud
+      fireUI();         // refresh local widgets
+    },
+    // subscribe to ANY store change (local + remote); returns nothing
+    subscribe: function (cb) { if (typeof cb === "function") uiSubs.push(cb); }
   };
 
   /* ---------- init ---------- */
