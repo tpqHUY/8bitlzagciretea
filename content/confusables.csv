@@ -1,0 +1,84 @@
+pair,note,word,pos,def
+affect / effect,"Almost always: affect = the action, effect = the result.",affect,verb,to influence or have an impact on
+affect / effect,"Almost always: affect = the action, effect = the result.",effect,noun / verb,a result (n); to bring about (v: 'effect change')
+economic / economical,An economical car saves fuel; an economic policy concerns the economy.,economic,adj,relating to the economy or finance
+economic / economical,An economical car saves fuel; an economic policy concerns the economy.,economical,adj,"thrifty; not wasteful, good value"
+principle / principal,The principAL is your pAL (or the main one).,principle,noun,"a rule, law or fundamental truth"
+principle / principal,The principAL is your pAL (or the main one).,principal,adj / noun,"main, chief; or a head of a school"
+continual / continuous,Continual interruptions stop and start; continuous noise never pauses.,continual,adj,"repeated, happening again and again with breaks"
+continual / continuous,Continual interruptions stop and start; continuous noise never pauses.,continuous,adj,"uninterrupted, without any break"
+discrete / discreet,Discrete categories are separate; a discreet person keeps a secret.,discrete,adj,"separate, individually distinct"
+discrete / discreet,Discrete categories are separate; a discreet person keeps a secret.,discreet,adj,"careful, tactful, unobtrusive"
+imply / infer,A text implies; you infer. Reading questions hinge on this direction.,imply,verb,(the speaker/text) to suggest indirectly
+imply / infer,A text implies; you infer. Reading questions hinge on this direction.,infer,verb,(the reader/listener) to deduce from evidence
+elicit / illicit,Elicit a reaction vs illicit trade.,elicit,verb,"to draw out (a response, information)"
+elicit / illicit,Elicit a reaction vs illicit trade.,illicit,adj,"illegal, forbidden"
+disinterested / uninterested,"A good judge is disinterested, not uninterested — a classic trap word.",disinterested,adj,"impartial, unbiased"
+disinterested / uninterested,"A good judge is disinterested, not uninterested — a classic trap word.",uninterested,adj,"bored, not interested"
+historic / historical,A historic event changed the world; a historical novel is set in the past.,historic,adj,"momentous, of great importance"
+historic / historical,A historic event changed the world; a historical novel is set in the past.,historical,adj,relating to history / the past
+adverse / averse,Adverse weather vs averse to change.,adverse,adj,"unfavourable, harmful"
+adverse / averse,Adverse weather vs averse to change.,averse,adj,"opposed to, reluctant ('averse to risk')"
+precede / proceed,What precedes X comes first; to proceed is to carry on.,precede,verb,to come before in time or order
+precede / proceed,What precedes X comes first; to proceed is to carry on.,proceed,verb,to continue or go ahead
+stationary / stationery,StationAry = At rest; stationEry = paper (E).,stationary,adj,"not moving, fixed in place"
+stationary / stationery,StationAry = At rest; stationEry = paper (E).,stationery,noun,"writing materials (paper, pens)"
+comprise / compose / constitute,The whole comprises the parts; the parts constitute the whole. Avoid 'is comprised of' in precise reading.,comprise,verb,to consist of / be made up of (whole comprises parts)
+comprise / compose / constitute,The whole comprises the parts; the parts constitute the whole. Avoid 'is comprised of' in precise reading.,compose,verb,to make up (parts compose the whole)
+comprise / compose / constitute,The whole comprises the parts; the parts constitute the whole. Avoid 'is comprised of' in precise reading.,constitute,verb,to form / amount to
+practical / practicable,A practical skill vs a practicable plan (one that can actually be carried out).,practical,adj,"useful, hands-on, concerned with action"
+practical / practicable,A practical skill vs a practicable plan (one that can actually be carried out).,practicable,adj,"able to be done, feasible"
+alternate / alternative,Alternate days = every second day; an alternative = another option.,alternate,adj / verb,every other one; to switch back and forth
+alternate / alternative,Alternate days = every second day; an alternative = another option.,alternative,adj / noun,a different option or choice
+credible / credulous,A credible source is trustworthy; a credulous reader is easily fooled.,credible,adj,"believable, convincing"
+credible / credulous,A credible source is trustworthy; a credulous reader is easily fooled.,credulous,adj,too ready to believe; gullible
+ensure / insure / assure,"Ensure a result, insure a car, assure a person.",ensure,verb,to make certain
+ensure / insure / assure,"Ensure a result, insure a car, assure a person.",insure,verb,to protect with insurance
+ensure / insure / assure,"Ensure a result, insure a car, assure a person.",assure,verb,"to tell someone confidently, reassure"
+complement / compliment,Complement = complete; compliment = 'I like it'.,complement,noun / verb,something that completes or goes well with
+complement / compliment,Complement = complete; compliment = 'I like it'.,compliment,noun / verb,"praise, a flattering remark"
+explicit / implicit,An explicit claim is on the page; an implicit one must be inferred — see imply/infer.,explicit,adj,stated directly and clearly
+explicit / implicit,An explicit claim is on the page; an implicit one must be inferred — see imply/infer.,implicit,adj,"implied, understood without being said"
+assume / presume,presume rests on some reason; assume needs none.,assume,verb,to suppose without proof
+assume / presume,presume rests on some reason; assume needs none.,presume,verb,to suppose based on probability or grounds
+deduce / deduct,You deduce a conclusion but deduct a number.,deduce,verb,to reach a conclusion by reasoning
+deduce / deduct,You deduce a conclusion but deduct a number.,deduct,verb,to subtract an amount
+adopt / adapt,Adopt a method as it is; adapt it by changing it.,adopt,verb,to take up or start using
+adopt / adapt,Adopt a method as it is; adapt it by changing it.,adapt,verb,to adjust or modify to suit
+later / latter,the former / the latter = the first / the second; later = afterwards.,later,adv / adj,at a subsequent time
+later / latter,the former / the latter = the first / the second; later = afterwards.,latter,adj / noun,the second of two things mentioned
+systematic / systemic,A systematic search is orderly; systemic failure runs through the whole system.,systematic,adj,"done methodically, according to a system"
+systematic / systemic,A systematic search is orderly; systemic failure runs through the whole system.,systemic,adj,affecting an entire system or body
+exhaustive / exhausting,An exhaustive study is complete; an exhausting one wears you out.,exhaustive,adj,"thorough, covering everything"
+exhaustive / exhausting,An exhaustive study is complete; an exhausting one wears you out.,exhausting,adj,extremely tiring
+definite / definitive,A definite answer is certain; the definitive account is the last word on it.,definite,adj,"clear, certain, fixed"
+definite / definitive,A definite answer is certain; the definitive account is the last word on it.,definitive,adj,"final and authoritative, settling the matter"
+successive / successful,"Three successive years = three in a row, regardless of success.",successive,adj,"following one after another, consecutive"
+successive / successful,"Three successive years = three in a row, regardless of success.",successful,adj,achieving the aim
+industrial / industrious,An industrial region has factories; an industrious worker puts in effort.,industrial,adj,relating to industry or factories
+industrial / industrious,An industrial region has factories; an industrious worker puts in effort.,industrious,adj,"hard-working, diligent"
+notable / notorious,notorious is negative — a trap when a statement calls something merely 'famous'.,notable,adj,"worthy of attention, remarkable"
+notable / notorious,notorious is negative — a trap when a statement calls something merely 'famous'.,notorious,adj,famous for something bad
+temporal / temporary,Temporal order = time order; a temporary measure is short-lived.,temporal,adj,"relating to time (or worldly, not spiritual)"
+temporal / temporary,Temporal order = time order; a temporary measure is short-lived.,temporary,adj,lasting only a short time
+judicial / judicious,A judicial ruling is a court's; a judicious choice is a wise one.,judicial,adj,relating to courts and judges
+judicial / judicious,A judicial ruling is a court's; a judicious choice is a wise one.,judicious,adj,"showing good judgement, sensible"
+prescribe / proscribe,Near-opposites — a high-value trap. Prescribe = require; proscribe = prohibit.,prescribe,verb,to recommend or order officially
+prescribe / proscribe,Near-opposites — a high-value trap. Prescribe = require; proscribe = prohibit.,proscribe,verb,to forbid or ban
+emigrate / immigrate / migrate,"Emigrate FROM, immigrate TO; migrate is the neutral, general move.",emigrate,verb,to leave one's own country to live elsewhere
+emigrate / immigrate / migrate,"Emigrate FROM, immigrate TO; migrate is the neutral, general move.",immigrate,verb,to come into a country to live
+emigrate / immigrate / migrate,"Emigrate FROM, immigrate TO; migrate is the neutral, general move.",migrate,verb,to move from one place to another (often seasonally)
+council / counsel,A council meets; counsel is the advice it might give.,council,noun,an assembly or governing body
+council / counsel,A council meets; counsel is the advice it might give.,counsel,noun / verb,advice; to advise; a lawyer
+dependent / dependant,Be dependent (adj) on aid; support a dependant (n).,dependent,adj,relying on something or someone
+dependent / dependant,Be dependent (adj) on aid; support a dependant (n).,dependant,noun,a person who depends on another (UK spelling)
+device / devise,You devise (v) a clever device (n).,device,noun,"a tool, gadget or plan"
+device / devise,You devise (v) a clever device (n).,devise,verb,to invent or plan
+allusion / illusion,An allusion points to something; an illusion deceives you.,allusion,noun,an indirect reference
+allusion / illusion,An allusion points to something; an illusion deceives you.,illusion,noun,a false impression or belief
+perspective / prospective,Your perspective is your viewpoint; a prospective student is a future one.,perspective,noun,a point of view or way of seeing
+perspective / prospective,Your perspective is your viewpoint; a prospective student is a future one.,prospective,adj,"expected or likely in the future, potential"
+eminent / imminent,An eminent scientist is renowned; an imminent storm is close.,eminent,adj,"distinguished, famous and respected"
+eminent / imminent,An eminent scientist is renowned; an imminent storm is close.,imminent,adj,about to happen very soon
+rebut / refute,Refute implies success; rebut is only the attempt. Reading tests this strength gap.,rebut,verb,"to argue against, claim something is false"
+rebut / refute,Refute implies success; rebut is only the attempt. Reading tests this strength gap.,refute,verb,to prove something is false (stronger)
