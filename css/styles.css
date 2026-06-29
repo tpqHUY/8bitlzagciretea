@@ -2070,22 +2070,47 @@ html.night body[data-mode="writing"] .kbox { border-color: var(--hair-strong); }
   padding-top: 0.9rem;
   border-top: 1px dashed var(--hair);
 }
+/* clear "learned" badge on a tab — a filled accent check chip */
+.tab.tab-learned { color: var(--accent); }
 .tab.tab-learned::after {
   content: "✓";
-  margin-left: 0.4em;
-  color: var(--accent);
+  display: inline-grid;
+  place-items: center;
+  width: 1.15em; height: 1.15em;
+  margin-left: 0.45em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72em;
   font-weight: 700;
-  font-size: 0.85em;
+  line-height: 1;
+  vertical-align: middle;
 }
-.card-progress {
+
+/* circular progress ring on each card (sections learned) */
+.card-ring {
+  position: relative;
+  width: 46px; height: 46px;
+  margin-top: 0.35rem;
+  flex: none;
+}
+.card-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.card-ring circle { fill: none; stroke-width: 3.2; }
+.card-ring .cr-bg { stroke: var(--surface-2); }
+.card-ring .cr-fg {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.45s ease;
+}
+.card-ring .cr-num {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  margin-top: 0.2rem;
-  white-space: nowrap;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-soft);
 }
-.card-progress.started { color: var(--text-soft); }
-.card-progress.complete { color: var(--accent); }
-.card-progress.complete::before { content: "✓ "; font-weight: 700; }
+.card-ring.started .cr-num { color: var(--accent); }
+.card-ring.complete .cr-num { color: var(--accent); font-size: 0.95rem; }

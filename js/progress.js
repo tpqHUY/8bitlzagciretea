@@ -37,12 +37,17 @@
       let done = 0;
       c.keys.forEach(function (k) { if (has(k)) done++; });
       const total = c.keys.length;
-      if (c.badge) {
-        c.badge.textContent = done + " / " + total + " learned";
-        c.badge.classList.toggle("complete", total > 0 && done === total);
-        c.badge.classList.toggle("started", done > 0 && done < total);
+      const complete = total > 0 && done === total;
+      if (c.ring) {
+        const fg = c.ring.querySelector(".cr-fg");
+        const num = c.ring.querySelector(".cr-num");
+        if (fg) fg.style.strokeDashoffset = String(100 - (total ? done / total * 100 : 0));
+        if (num) num.textContent = complete ? "✓" : (done + "/" + total);
+        c.ring.classList.toggle("complete", complete);
+        c.ring.classList.toggle("started", done > 0 && !complete);
+        c.ring.setAttribute("title", done + " of " + total + " sections learned");
       }
-      c.card.classList.toggle("is-learned", total > 0 && done === total);
+      c.card.classList.toggle("is-learned", complete);
     });
   }
 
@@ -102,15 +107,20 @@
           }
         });
 
-        // card header: a small "X / N learned" badge
+        // card header: a circular progress ring (sections learned)
         const meta = card.querySelector(".case-meta");
-        let badge = meta && meta.querySelector(".card-progress");
-        if (meta && !badge) {
-          badge = document.createElement("span");
-          badge.className = "card-progress";
-          meta.appendChild(badge);
+        let ring = meta && meta.querySelector(".card-ring");
+        if (meta && !ring) {
+          ring = document.createElement("div");
+          ring.className = "card-ring";
+          ring.innerHTML =
+            '<svg viewBox="0 0 36 36" aria-hidden="true">' +
+              '<circle class="cr-bg" cx="18" cy="18" r="15.9"></circle>' +
+              '<circle class="cr-fg" cx="18" cy="18" r="15.9" pathLength="100"></circle>' +
+            "</svg><span class=\"cr-num\"></span>";
+          meta.appendChild(ring);
         }
-        cards.push({ card: card, keys: cardKeys, badge: badge });
+        cards.push({ card: card, keys: cardKeys, ring: ring });
       });
 
       // per-section progress bar
