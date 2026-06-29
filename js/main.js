@@ -542,34 +542,36 @@
   })();
 
   /* ---------- annotated band-8 model answers ---------- */
-  (function models() {
-    const grid = $("#wModelsContainer");
-    if (!grid || !window.WMODELS) return;
-    function critKey(c) { return c === "TA" ? "TR" : c; }
+  /* annotated model answers — reusable for IELTS & TOEIC Writing.
+     colorOf maps a note's crit code to one of the 4 tag colour classes. */
+  function renderModels(gridSel, legendSel, data, legend, colorOf, notesTitle) {
+    const grid = $(gridSel);
+    if (!grid || !data || !data.length) return;
     function annoParse(s) {
       return s.replace(/\[\[(\d+)\|([^\]]+)\]\]/g, function (_, n, txt) {
         return '<span class="anno" data-n="' + n + '" tabindex="0">' + txt + "<sup>" + n + "</sup></span>";
       });
     }
-    grid.innerHTML = WMODELS.map(function (m) {
+    grid.innerHTML = data.map(function (m) {
       return (
         '<article class="model" id="model-' + m.id + '">' +
           '<div class="model-head"><span class="model-tag">' + m.task + " · " + m.type + '</span><span class="model-band">' + m.band + "</span></div>" +
           '<div class="model-prompt">' + m.prompt + "</div>" +
           '<div class="model-body">' + m.paras.map(function (p) { return "<p>" + annoParse(p) + "</p>"; }).join("") + "</div>" +
-          '<div class="model-notes"><p class="model-notes-title">What lifts it to band 8</p><ol>' +
+          '<div class="model-notes"><p class="model-notes-title">' + notesTitle + '</p><ol>' +
             m.notes.map(function (nt, i) {
-              return '<li class="note" data-n="' + (i + 1) + '"><span class="tag tag-' + critKey(nt.crit) + '">' + nt.crit + '</span><span class="note-t">' + nt.t + "</span></li>";
+              return '<li class="note" data-n="' + (i + 1) + '"><span class="tag tag-' + colorOf(nt.crit) + '">' + nt.crit + '</span><span class="note-t">' + nt.t + "</span></li>";
             }).join("") +
           "</ol></div>" +
         "</article>"
       );
     }).join("");
 
-    const leg = $("#modelLegend");
-    if (leg) {
-      leg.innerHTML = [["TR", "Task response"], ["CC", "Coherence"], ["LR", "Lexis"], ["GRA", "Grammar"]]
-        .map(function (c) { return '<span class="tag tag-' + c[0] + '">' + c[0] + '</span><span class="leg-l">' + c[1] + "</span>"; }).join("");
+    const leg = $(legendSel);
+    if (leg && legend) {
+      leg.innerHTML = legend.map(function (c) {
+        return '<span class="tag tag-' + colorOf(c[0]) + '">' + c[0] + '</span><span class="leg-l">' + c[1] + "</span>";
+      }).join("");
     }
 
     function setActive(model, n, on) {
@@ -597,6 +599,42 @@
         setTimeout(function () { note.classList.remove("pulse"); }, 1200);
       }
     });
+  }
+
+  // IELTS Writing models
+  renderModels("#wModelsContainer", "#modelLegend", window.WMODELS,
+    [["TR", "Task response"], ["CC", "Coherence"], ["LR", "Lexis"], ["GRA", "Grammar"]],
+    function (c) { return c === "TA" ? "TR" : c; }, "What lifts it to band 8");
+
+  // TOEIC Writing: models + Q1-5 sentences + essay topics + email scenarios
+  (function toeicWriting() {
+    const W = window.TOEIC_WR;
+    if (!W) return;
+    const TC = { G: "GRA", V: "LR", O: "CC", T: "TR" };
+    renderModels("#twrModels", "#twrModelLegend", W.models,
+      [["T", "Task"], ["O", "Organisation"], ["V", "Vocabulary"], ["G", "Grammar"]],
+      function (c) { return TC[c] || c; }, "What makes it score");
+
+    const sent = $("#twrSentences");
+    if (sent && W.modelSentences) sent.innerHTML = W.modelSentences.map(function (m) {
+      return '<div class="ms-row"><div class="ms-words">' +
+        m.words.map(function (w) { return "<span>" + w + "</span>"; }).join("") +
+        '</div><p class="ms-sentence">' + m.s + '</p><p class="ms-why">' + m.why + "</p></div>";
+    }).join("");
+
+    const topics = $("#twrTopics");
+    if (topics && W.essayTopics) topics.innerHTML = W.essayTopics.map(function (t) {
+      function side(s) { return '<div class="tp-side"><span class="tp-label">' + s.label + "</span><ul>" + s.ideas.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul></div>"; }
+      return '<div class="topic"><p class="tp-q">' + t.q + '</p><div class="tp-sides">' + side(t.a) + side(t.b) + '</div><p class="tp-ex">' + t.ex + "</p></div>";
+    }).join("");
+
+    const scen = $("#twrEmailScenarios");
+    if (scen && W.emailScenarios) scen.innerHTML = W.emailScenarios.map(function (s) {
+      return '<div class="scenario"><div class="sc-head"><span class="sc-type">' + s.type + '</span><span class="sc-when">' + s.when + "</span></div>" +
+        '<ul class="sc-cover">' + s.cover.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul>" +
+        '<div class="sc-frame"><span class="sc-k">Open</span> ' + s.open + "</div>" +
+        '<div class="sc-frame"><span class="sc-k">Close</span> ' + s.close + "</div></div>";
+    }).join("");
   })();
 
   /* ---------- TOEIC: Listening & Reading parts ---------- */

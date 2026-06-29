@@ -376,6 +376,105 @@ const TOEIC_WR = {
     { n: "Weak or missing paragraphing.", d: "One long block badly hurts organisation. Use four visible paragraphs: intro, two bodies, conclusion.", ex: [""] },
     { n: "Essay too short.", d: "Well under ~300 words reads as undeveloped. Plan enough to fill two full body paragraphs.", ex: [""] },
     { n: "No proofreading.", d: "Many grammar slips are catchable on a reread. Skipping the final pass leaves easy marks on the table.", ex: ["Always reserve ~2 minutes to check agreement, articles and tense."] }
+  ],
+
+  /* -------------------- Q1-5 model picture sentences -------------------- */
+  modelSentences: [
+    { words: ["man", "wait"], s: "The <b>man</b> is <b>waiting</b> for a bus at the stop.", why: "Action &rarr; present continuous (is + -ing)." },
+    { words: ["woman", "buy"], s: "A <b>woman</b> is <b>buying</b> fresh vegetables at the market.", why: "The default picture sentence; one clean clause." },
+    { words: ["because", "rain"], s: "They are holding umbrellas <b>because</b> it is <b>raining</b> heavily.", why: "Conjunction &rarr; two clauses (clause + because + clause)." },
+    { words: ["next to", "lamp"], s: "There is a <b>lamp</b> <b>next to</b> the sofa.", why: "Preposition of place &rarr; pairs with &lsquo;there is/are&rsquo;." },
+    { words: ["while", "phone"], s: "She is cooking dinner <b>while</b> she talks on the <b>phone</b>.", why: "&lsquo;While&rsquo; &rarr; two actions at the same time." },
+    { words: ["heavy", "carry"], s: "Two workers are <b>carrying</b> a <b>heavy</b> box together.", why: "Adjective before the noun + present continuous verb." }
+  ],
+
+  /* -------------------- annotated model answers (Q6-7, Q8) -------------------- */
+  models: [
+    {
+      id: "twr-email", task: "Questions 6&ndash;7", type: "Email reply", band: "Score 4 / 4",
+      prompt: "You work at an online store. A customer, Ms Lee, has emailed that the laptop she ordered has not arrived. <b>Reply to her email: apologise, explain the reason for the delay, and offer one solution.</b>",
+      paras: [
+        "[[1|Dear Ms Lee,]]",
+        "[[2|Thank you for your email regarding your recent laptop order.]] [[3|I am very sorry for the delay and for any inconvenience this has caused you.]]",
+        "[[4|The delay occurred because our supplier was affected by a shipping problem last week, and your order was held at our warehouse.]]",
+        "[[5|To resolve this, I have arranged for your laptop to be sent by express delivery today at no extra charge, so you should receive it within two days.]]",
+        "[[6|Please let me know if you have any further questions. Best regards, Minh Tran]]"
+      ],
+      notes: [
+        { crit: "O", t: "A proper greeting with the recipient&rsquo;s name sets the business register." },
+        { crit: "T", t: "Opens by referencing their email &mdash; acknowledges the request before answering." },
+        { crit: "V", t: "Polite apology vocabulary (&lsquo;any inconvenience&rsquo;) fits the formal register." },
+        { crit: "T", t: "Explains the reason for the delay &mdash; one of the three required points &mdash; with a plausible invented specific." },
+        { crit: "G", t: "Offers one clear solution; the present perfect + passive (&lsquo;have arranged&hellip; to be sent&rsquo;) is accurate and professional." },
+        { crit: "O", t: "A polite closing line and sign-off complete the email format." }
+      ]
+    },
+    {
+      id: "twr-essay", task: "Question 8", type: "Opinion essay", band: "Score 5 / 5",
+      prompt: "Do you agree or disagree with the following statement? <b>It is better for companies to allow their employees to work from home.</b> Give reasons and examples to support your opinion.",
+      paras: [
+        "[[1|These days, many companies are deciding whether to let their staff work remotely.]] [[2|In my opinion, allowing employees to work from home is a positive policy,]] mainly for two reasons: it raises productivity and it improves work-life balance.",
+        "[[3|First and foremost, working from home tends to increase productivity.]] Without a daily commute or a noisy office, employees can concentrate on their tasks for longer. [[4|For example, a colleague of mine finishes her reports far faster at home because there are fewer interruptions.]]",
+        "[[5|Secondly, remote work greatly improves work-life balance.]] Staff save the hours they would otherwise spend travelling and can use that time for their families or health. [[6|Although some managers worry that employees will be less disciplined, clear goals and regular online meetings can easily solve this problem.]]",
+        "[[7|In conclusion, I firmly believe that allowing employees to work from home benefits both the company and its staff,]] as it boosts productivity and supports a healthier balance between work and life."
+      ],
+      notes: [
+        { crit: "T", t: "Paraphrases the topic instead of copying the prompt." },
+        { crit: "T", t: "States a clear position (thesis) and signals the two reasons &mdash; exactly what Q8 rewards." },
+        { crit: "O", t: "A topic sentence: one clear main idea opens the paragraph." },
+        { crit: "T", t: "Develops the point with a concrete (invented) example &mdash; depth, not just assertion." },
+        { crit: "O", t: "The second reason, clearly signposted with &lsquo;Secondly&rsquo;." },
+        { crit: "G", t: "Concedes the opposing view then refutes it; the &lsquo;Although&hellip;&rsquo; clause is an accurate complex structure." },
+        { crit: "T", t: "The conclusion restates the position and the two reasons &mdash; no new ideas." }
+      ]
+    }
+  ],
+
+  /* -------------------- Q8 essay topic + idea bank -------------------- */
+  essayTopics: [
+    { q: "Companies should let employees work from home. Agree or disagree?",
+      a: { label: "Agree", ideas: ["Productivity: fewer office distractions, no commute", "Better work-life balance &rarr; happier, healthier staff"] },
+      b: { label: "Disagree", ideas: ["Weaker teamwork and communication", "Harder to manage and stay disciplined"] },
+      ex: "Example: a team that went remote saved commute time but needed daily video stand-ups to stay aligned." },
+    { q: "Is it better to have a high salary or a job you enjoy?",
+      a: { label: "High salary", ideas: ["Financial security; supports family and saving", "Rewards effort and opens future choices"] },
+      b: { label: "Enjoyable job", ideas: ["Motivation and long-term happiness", "Less stress &rarr; better health and performance"] },
+      ex: "Example: a well-paid but stressful job can lead to burnout, while passion sustains effort for years." },
+    { q: "Should students take a part-time job while studying?",
+      a: { label: "Yes", ideas: ["Real-world experience and extra income", "Builds time-management and people skills"] },
+      b: { label: "No", ideas: ["Less time and energy for study", "Risk of lower grades or burnout"] },
+      ex: "Example: a few hours a week can teach responsibility, but full shifts often hurt exam results." },
+    { q: "Is advertising on social media better than on television?",
+      a: { label: "Social media", ideas: ["Cheaper with precise audience targeting", "Two-way and easy to measure"] },
+      b: { label: "Television", ideas: ["Wider reach and higher trust", "Strong audio-visual impact"] },
+      ex: "Example: a small brand can target ads by interest online for a fraction of a TV-slot cost." },
+    { q: "Should companies provide training for new employees? Agree or disagree?",
+      a: { label: "Agree", ideas: ["Faster, more confident and consistent staff", "Improves loyalty and retention"] },
+      b: { label: "Disagree", ideas: ["Costly and time-consuming up front", "Trained staff may leave for rivals"] },
+      ex: "Example: an onboarding week costs money but cuts mistakes and helps new hires contribute sooner." },
+    { q: "Is it better to live in a big city or a small town?",
+      a: { label: "Big city", ideas: ["More jobs, services and convenience", "Culture, networking and opportunities"] },
+      b: { label: "Small town", ideas: ["Lower cost of living and less stress", "Stronger community and more space"] },
+      ex: "Example: a city offers career growth, but a town offers a calmer, more affordable daily life." }
+  ],
+
+  /* -------------------- Q6-7 email scenario bank -------------------- */
+  emailScenarios: [
+    { type: "Request information", when: "An advert or notice asks you to find out details (price, schedule, availability).",
+      cover: ["Say what you saw and why you&rsquo;re writing", "Ask 2&ndash;3 specific questions"],
+      open: "I am writing to enquire about&hellip;", close: "I look forward to hearing from you." },
+    { type: "Make a complaint", when: "A product or service was faulty, late or not as described.",
+      cover: ["Describe the problem and when it happened", "State what you expect (refund / replacement / repair)"],
+      open: "I am writing to express my dissatisfaction with&hellip;", close: "I would appreciate a prompt resolution." },
+    { type: "Apologise &amp; explain", when: "You or your company caused a problem for the reader.",
+      cover: ["Apologise clearly and sincerely", "Explain the reason and offer one solution"],
+      open: "I sincerely apologise for&hellip;", close: "Thank you for your patience and understanding." },
+    { type: "Arrange / reschedule", when: "Set up or move a meeting, appointment or delivery.",
+      cover: ["Propose a specific date and time", "Ask them to confirm or suggest an alternative"],
+      open: "I would like to arrange a meeting to&hellip;", close: "Please let me know what time suits you best." },
+    { type: "Give a recommendation", when: "A colleague or friend asks you for a suggestion or advice.",
+      cover: ["Recommend one clear option", "Give one or two reasons for it"],
+      open: "Thank you for your message. I would suggest&hellip;", close: "I hope this helps; let me know if you need more." }
   ]
 };
 

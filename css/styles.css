@@ -2114,3 +2114,80 @@ html.night body[data-mode="writing"] .kbox { border-color: var(--hair-strong); }
 }
 .card-ring.started .cr-num { color: var(--accent); }
 .card-ring.complete .cr-num { color: var(--accent); font-size: 0.95rem; }
+
+/* ============================================================
+   TOEIC Writing: model answers (sentences) + topic/idea bank
+   (model cards reuse the .model / .tag-* styles)
+   ============================================================ */
+.model-sub {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.9rem;
+}
+
+/* Q1-5 model picture sentences */
+#twrSentences { display: grid; gap: 0.7rem; }
+.ms-row {
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 0.8rem 1rem;
+}
+.ms-words { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.45rem; }
+.ms-words span {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  border-radius: 100px;
+  padding: 0.16em 0.6em;
+}
+.ms-sentence { font-family: var(--serif); font-size: 1.05rem; margin: 0 0 0.25rem; }
+.ms-sentence b { color: var(--accent); font-weight: 600; }
+.ms-why { margin: 0; font-size: 0.84rem; color: var(--text-soft); }
+
+/* Q8 essay topics — ideas for both sides */
+#twrTopics { display: grid; gap: 1rem; }
+.topic {
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+  box-shadow: var(--shadow);
+}
+.tp-q { font-family: var(--serif); font-size: 1.14rem; margin: 0 0 0.9rem; }
+.tp-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.tp-side { background: var(--surface-2); border-radius: 6px; padding: 0.7rem 0.9rem; }
+.tp-label {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); display: block; margin-bottom: 0.45rem;
+}
+.tp-side ul { margin: 0; padding-left: 1.05rem; }
+.tp-side li { font-size: 0.9rem; color: var(--text-soft); margin-bottom: 0.3rem; }
+.tp-ex { margin: 0.9rem 0 0; font-size: 0.88rem; color: var(--text-soft); font-style: italic; }
+@media (max-width: 560px) { .tp-sides { grid-template-columns: 1fr; } }
+
+/* Q6-7 email scenarios */
+#twrEmailScenarios { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1rem; }
+.scenario {
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 6px 6px;
+  padding: 1rem 1.2rem;
+}
+.sc-type { font-family: var(--serif); font-weight: 500; font-size: 1.08rem; display: block; }
+.sc-when { font-size: 0.85rem; color: var(--text-soft); }
+.sc-cover { margin: 0.65rem 0; padding-left: 1.1rem; }
+.sc-cover li { font-size: 0.9rem; color: var(--text); margin-bottom: 0.3rem; }
+.sc-frame { font-size: 0.9rem; color: var(--text-soft); margin-top: 0.35rem; }
+.sc-frame .sc-k {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent-soft); border-radius: 3px;
+  padding: 0.12em 0.4em; margin-right: 0.45em;
+}
